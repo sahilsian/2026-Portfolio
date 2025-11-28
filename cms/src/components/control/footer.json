@@ -1,0 +1,17 @@
+{
+  "collectionName": "components_control_footers",
+  "info": {
+    "displayName": "footer",
+    "icon": "earth"
+  },
+  "options": {},
+  "attributes": {
+    "title": {
+      "type": "string"
+    },
+    "description": {
+      "type": "string"
+    }
+  },
+  "config": {}
+}

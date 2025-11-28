@@ -1,0 +1,22 @@
+{
+  "collectionName": "components_control_variations",
+  "info": {
+    "displayName": "variation",
+    "icon": "car"
+  },
+  "options": {},
+  "attributes": {
+    "variations": {
+      "type": "enumeration",
+      "enum": [
+        "hero",
+        "heroReversed",
+        "feature",
+        "featureReversed",
+        "statement",
+        "statementReversed"
+      ]
+    }
+  },
+  "config": {}
+}

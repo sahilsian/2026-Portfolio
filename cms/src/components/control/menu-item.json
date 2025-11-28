@@ -1,0 +1,26 @@
+{
+  "collectionName": "components_control_menu_items",
+  "info": {
+    "displayName": "menuItem",
+    "icon": "arrowRight"
+  },
+  "options": {},
+  "attributes": {
+    "displayName": {
+      "type": "string"
+    },
+    "slug": {
+      "type": "string"
+    },
+    "category": {
+      "type": "enumeration",
+      "enum": [
+        "Art",
+        "Software",
+        "About",
+        "Social"
+      ]
+    }
+  },
+  "config": {}
+}
