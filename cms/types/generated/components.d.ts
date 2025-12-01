@@ -14,18 +14,6 @@ export interface ControlButton extends Struct.ComponentSchema {
   };
 }
 
-export interface ControlFooter extends Struct.ComponentSchema {
-  collectionName: 'components_control_footers';
-  info: {
-    displayName: 'footer';
-    icon: 'earth';
-  };
-  attributes: {
-    description: Schema.Attribute.String;
-    title: Schema.Attribute.String;
-  };
-}
-
 export interface ControlMenuItem extends Struct.ComponentSchema {
   collectionName: 'components_control_menu_items';
   info: {
@@ -35,7 +23,8 @@ export interface ControlMenuItem extends Struct.ComponentSchema {
   attributes: {
     category: Schema.Attribute.Enumeration<
       ['Art', 'Software', 'About', 'Social']
-    >;
+    > &
+      Schema.Attribute.Required;
     displayName: Schema.Attribute.String;
     slug: Schema.Attribute.String;
   };
@@ -96,7 +85,6 @@ declare module '@strapi/strapi' {
   export module Public {
     export interface ComponentSchemas {
       'control.button': ControlButton;
-      'control.footer': ControlFooter;
       'control.menu-item': ControlMenuItem;
       'control.variation': ControlVariation;
       'layout.group': LayoutGroup;
