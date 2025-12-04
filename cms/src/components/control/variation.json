@@ -6,15 +6,14 @@
   },
   "options": {},
   "attributes": {
-    "variations": {
+    "variation": {
       "type": "enumeration",
       "enum": [
         "hero",
-        "heroReversed",
         "feature",
         "featureReversed",
         "statement",
-        "statementReversed"
+        "collection"
       ]
     }
   },

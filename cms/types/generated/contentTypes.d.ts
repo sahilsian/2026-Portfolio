@@ -433,9 +433,41 @@ export interface AdminUser extends Struct.CollectionTypeSchema {
 export interface ApiArtArt extends Struct.CollectionTypeSchema {
   collectionName: 'arts';
   info: {
-    displayName: 'art';
+    displayName: 'artwork';
     pluralName: 'arts';
     singularName: 'art';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    body: Schema.Attribute.RichText;
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    description: Schema.Attribute.Text;
+    image: Schema.Attribute.Media<'images' | 'files' | 'videos' | 'audios'>;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<'oneToMany', 'api::art.art'> &
+      Schema.Attribute.Private;
+    order: Schema.Attribute.Integer &
+      Schema.Attribute.Required &
+      Schema.Attribute.Unique;
+    publishedAt: Schema.Attribute.DateTime;
+    slug: Schema.Attribute.UID;
+    title: Schema.Attribute.String;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
+export interface ApiArtworkArtwork extends Struct.SingleTypeSchema {
+  collectionName: 'artworks';
+  info: {
+    displayName: 'artwork';
+    pluralName: 'artworks';
+    singularName: 'artwork';
   };
   options: {
     draftAndPublish: true;
@@ -445,11 +477,13 @@ export interface ApiArtArt extends Struct.CollectionTypeSchema {
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
     locale: Schema.Attribute.String & Schema.Attribute.Private;
-    localizations: Schema.Attribute.Relation<'oneToMany', 'api::art.art'> &
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::artwork.artwork'
+    > &
       Schema.Attribute.Private;
     publishedAt: Schema.Attribute.DateTime;
-    slug: Schema.Attribute.UID<'title'>;
-    title: Schema.Attribute.String;
+    traditional: Schema.Attribute.Component<'layout.collection', false>;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
@@ -533,6 +567,7 @@ export interface ApiMenuMenu extends Struct.SingleTypeSchema {
       Schema.Attribute.Private;
     mainMenuItems: Schema.Attribute.Component<'control.menu-item', true>;
     publishedAt: Schema.Attribute.DateTime;
+    title: Schema.Attribute.String;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
@@ -1079,6 +1114,7 @@ declare module '@strapi/strapi' {
       'admin::transfer-token-permission': AdminTransferTokenPermission;
       'admin::user': AdminUser;
       'api::art.art': ApiArtArt;
+      'api::artwork.artwork': ApiArtworkArtwork;
       'api::footer.footer': ApiFooterFooter;
       'api::home.home': ApiHomeHome;
       'api::menu.menu': ApiMenuMenu;

@@ -37,16 +37,22 @@ export interface ControlVariation extends Struct.ComponentSchema {
     icon: 'car';
   };
   attributes: {
-    variations: Schema.Attribute.Enumeration<
-      [
-        'hero',
-        'heroReversed',
-        'feature',
-        'featureReversed',
-        'statement',
-        'statementReversed',
-      ]
+    variation: Schema.Attribute.Enumeration<
+      ['hero', 'feature', 'featureReversed', 'statement', 'collection']
     >;
+  };
+}
+
+export interface LayoutCollection extends Struct.ComponentSchema {
+  collectionName: 'components_layout_collections';
+  info: {
+    displayName: 'collection';
+    icon: 'bulletList';
+  };
+  attributes: {
+    description: Schema.Attribute.Text;
+    title: Schema.Attribute.String;
+    variation: Schema.Attribute.Component<'control.variation', false>;
   };
 }
 
@@ -87,6 +93,7 @@ declare module '@strapi/strapi' {
       'control.button': ControlButton;
       'control.menu-item': ControlMenuItem;
       'control.variation': ControlVariation;
+      'layout.collection': LayoutCollection;
       'layout.group': LayoutGroup;
       'layout.statement': LayoutStatement;
     }

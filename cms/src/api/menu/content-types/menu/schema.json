@@ -11,6 +11,9 @@
   },
   "pluginOptions": {},
   "attributes": {
+    "title": {
+      "type": "string"
+    },
     "mainMenuItems": {
       "type": "component",
       "component": "control.menu-item",
