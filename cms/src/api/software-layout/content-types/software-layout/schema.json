@@ -1,17 +1,17 @@
 {
   "kind": "singleType",
-  "collectionName": "artworks",
+  "collectionName": "software_layouts",
   "info": {
-    "singularName": "artwork",
-    "pluralName": "artworks",
-    "displayName": "artwork"
+    "singularName": "software-layout",
+    "pluralName": "software-layouts",
+    "displayName": "software_layout"
   },
   "options": {
     "draftAndPublish": true
   },
   "pluginOptions": {},
   "attributes": {
-    "traditional": {
+    "layout": {
       "type": "component",
       "component": "layout.collection",
       "repeatable": false

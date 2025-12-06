@@ -1,0 +1,20 @@
+{
+  "kind": "singleType",
+  "collectionName": "art_layouts",
+  "info": {
+    "singularName": "art-layout",
+    "pluralName": "art-layouts",
+    "displayName": "art_layout"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "layout": {
+      "type": "component",
+      "component": "layout.collection",
+      "repeatable": false
+    }
+  }
+}

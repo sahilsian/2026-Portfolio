@@ -4,7 +4,7 @@
   "info": {
     "singularName": "art",
     "pluralName": "arts",
-    "displayName": "artwork"
+    "displayName": "art"
   },
   "options": {
     "draftAndPublish": true
@@ -35,8 +35,10 @@
         "audios"
       ]
     },
-    "body": {
-      "type": "richtext"
+    "tabs": {
+      "type": "component",
+      "component": "control.tabs",
+      "repeatable": false
     }
   }
 }

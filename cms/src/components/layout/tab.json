@@ -1,0 +1,17 @@
+{
+  "collectionName": "components_layout_tabs",
+  "info": {
+    "displayName": "tab",
+    "icon": "apps"
+  },
+  "options": {},
+  "attributes": {
+    "title": {
+      "type": "string"
+    },
+    "description": {
+      "type": "text"
+    }
+  },
+  "config": {}
+}

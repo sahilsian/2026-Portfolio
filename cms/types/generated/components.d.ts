@@ -30,6 +30,17 @@ export interface ControlMenuItem extends Struct.ComponentSchema {
   };
 }
 
+export interface ControlTabs extends Struct.ComponentSchema {
+  collectionName: 'components_control_tabs';
+  info: {
+    displayName: 'tabs';
+    icon: 'hashtag';
+  };
+  attributes: {
+    tab: Schema.Attribute.Component<'layout.tab', true>;
+  };
+}
+
 export interface ControlVariation extends Struct.ComponentSchema {
   collectionName: 'components_control_variations';
   info: {
@@ -87,15 +98,29 @@ export interface LayoutStatement extends Struct.ComponentSchema {
   };
 }
 
+export interface LayoutTab extends Struct.ComponentSchema {
+  collectionName: 'components_layout_tabs';
+  info: {
+    displayName: 'tab';
+    icon: 'apps';
+  };
+  attributes: {
+    description: Schema.Attribute.Text;
+    title: Schema.Attribute.String;
+  };
+}
+
 declare module '@strapi/strapi' {
   export module Public {
     export interface ComponentSchemas {
       'control.button': ControlButton;
       'control.menu-item': ControlMenuItem;
+      'control.tabs': ControlTabs;
       'control.variation': ControlVariation;
       'layout.collection': LayoutCollection;
       'layout.group': LayoutGroup;
       'layout.statement': LayoutStatement;
+      'layout.tab': LayoutTab;
     }
   }
 }

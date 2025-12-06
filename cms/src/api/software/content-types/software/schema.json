@@ -11,12 +11,34 @@
   },
   "pluginOptions": {},
   "attributes": {
+    "order": {
+      "type": "integer",
+      "required": true,
+      "unique": true
+    },
+    "slug": {
+      "type": "string"
+    },
     "title": {
       "type": "string"
     },
-    "slug": {
-      "type": "uid",
-      "targetField": "title"
+    "description": {
+      "type": "string"
+    },
+    "image": {
+      "type": "media",
+      "multiple": false,
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ]
+    },
+    "tabs": {
+      "type": "component",
+      "component": "control.tabs",
+      "repeatable": false
     }
   }
 }
