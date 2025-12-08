@@ -27,7 +27,6 @@
         };
     };
 
-
     const Image = ({ image, objectFit="cover", objectPosition="top", className = "IMG" }:ImageProps) => {
         const props = toImageProps(image);
 
