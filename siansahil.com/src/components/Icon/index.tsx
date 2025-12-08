@@ -1,22 +1,16 @@
-import styled from "styled-components";
 import * as React from "react";
 
 type Sizes = "small" | "medium" | "large"
 
-interface ContainerProps {
-    width: number;
-    height: number;
-}
-
-const Container = styled.div<ContainerProps>`
-    width: ${props => props.width}px;
-    height: ${props => props.height}px;
-    margin-bottom: 4px;
-`
-
 interface IconProps {
     icon: React.ReactElement;
     size?: Sizes;
+}
+
+const sizeClasses = {
+    small: "w-4 h-4",    // 16px
+    medium: "w-6 h-6",   // 24px
+    large: "w-8 h-8"     // 32px
 }
 
 const Icon = ({icon, size = "medium"}: IconProps) => {
@@ -25,9 +19,11 @@ const Icon = ({icon, size = "medium"}: IconProps) => {
         return null;
     }
 
-    const iconSize = size === "small" ? 16 : size === "medium" ? 24 : 32;
-
-    return <Container width={iconSize} height={iconSize}>{icon}</Container>;
+    return (
+        <div className={`${sizeClasses[size]} mb-1`}>
+            {icon}
+        </div>
+    );
 }
 
 export default Icon
