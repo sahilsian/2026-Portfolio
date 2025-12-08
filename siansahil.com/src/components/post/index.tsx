@@ -7,7 +7,7 @@ interface PostProps {
     title: string;
     description: string;
     image: StrapiImage;
-    slug?: string;
+    slug: string;
     clickable: boolean;
     documentId: string;
 }

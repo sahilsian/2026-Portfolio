@@ -1,4 +1,4 @@
-import Image, {StrapiImage} from "@/components/image";
+import {StrapiImage} from "@/components/image";
 import Typography from "@/components/typography";
 import Spacer from "@/components/spacer";
 import {useRouter} from "@tanstack/react-router";
@@ -7,16 +7,16 @@ import {Media} from "@/components/layouts/product/media.tsx";
 import Background from "@/components/layouts/product/background.tsx";
 
 interface ProductLayoutProps {
-    type: string;
+    type?: string;
     title: string;
-    slug: string;
+    slug?: string;
     image: StrapiImage;
     description: string;
     backgroundColor?: string;
     tabs: Tab[]
 }
 
-const ProductLayout = ({type, title, slug, description, image, tabs, backgroundColor="#EDEDED"}:ProductLayoutProps) => {
+const ProductLayout = ({ title, description, image, tabs, backgroundColor="#EDEDED"}:ProductLayoutProps) => {
     const router = useRouter()
     return (
         <div style={{backgroundColor: backgroundColor}} className={'p-6 md:px-22 py-22 relative'}>

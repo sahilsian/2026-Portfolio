@@ -5,6 +5,7 @@ import {lazy} from "react";
 interface MenuProps {
     title: string;
     menuItems?: MenuItemProps[]
+    backgroundColor?: string;
 }
 
 const loadMenu = () =>
