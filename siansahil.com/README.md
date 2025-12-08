@@ -1,4 +1,4 @@
-Welcome to your new TanStack app! 
+git statusWelcome to your new TanStack app! 
 
 # Getting Started
 
