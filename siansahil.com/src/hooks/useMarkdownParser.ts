@@ -1,17 +1,11 @@
 // Sahil Sian 2025
 
 import {useMemo} from "react";
-
+import {Markdown} from "@/lib/markdown";
 const useMarkdownParser = (markdown:string) => {
-    const output = useMemo(() => {
-        const html;
-
-        const tokenizer = new Tokenizer(markdown);
-
-        return html
+    return useMemo(() => {
+        return new Markdown().render(markdown)
     }, [markdown])
-
-    return output
 }
 
 export default useMarkdownParser

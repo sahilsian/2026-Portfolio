@@ -1,4 +1,5 @@
 import { getFontStyles, type Font } from "./fonts";
+import {getRichFontStyles} from "@/components/typography/richFonts.ts";
 
 type Alignments = "left" | "center" | "right" | "justify";
 
@@ -7,7 +8,8 @@ interface TypographyProps {
     level?: Font;
     alignment?: Alignments;
     underline?: boolean;
-    inactive?: boolean
+    inactive?: boolean;
+    rich?: boolean;
 }
 
 const Typography = ({
@@ -15,10 +17,11 @@ const Typography = ({
                         level = "p",
                         alignment = "left",
                         underline,
-                        inactive
+                        inactive,
+                        rich
                     }: TypographyProps) => {
 
-    const fontClasses = getFontStyles(level);
+    const fontClasses = rich ? getRichFontStyles(level) : getFontStyles(level);
 
     const alignmentClasses = {
         left: "text-left",

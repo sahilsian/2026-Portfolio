@@ -1,6 +1,6 @@
 import { useState } from "react";
 import Typography from "@/components/typography";
-import RichTextRenderer from "@/components/renderers/richTextRenderer";
+import RichText from "@/components/richText";
 
 export interface TabbedContentProps {
     tabs?: Tab[]
@@ -16,7 +16,6 @@ const TabbedContent = ({ tabs }: TabbedContentProps) => {
     if (!tabs) return null;
 
     const [activeTitle, setActiveTitle] = useState(tabs[0].title);
-
     return (
         <div>
             <div className="flex gap-4 border-b border-black">
@@ -43,7 +42,7 @@ const TabbedContent = ({ tabs }: TabbedContentProps) => {
                             display: activeTitle === tab.title ? 'block' : 'none'
                         }}
                     >
-                        <RichTextRenderer richText={tab.richDescription}></RichTextRenderer>
+                        <RichText richText={tab.richDescription}></RichText>
                     </div>
                 ))}
             </div>
