@@ -11,7 +11,7 @@
   },
   "pluginOptions": {},
   "attributes": {
-    "layout": {
+    "collection": {
       "type": "component",
       "component": "layout.collection",
       "repeatable": false

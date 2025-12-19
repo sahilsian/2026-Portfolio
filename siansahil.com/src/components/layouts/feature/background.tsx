@@ -16,8 +16,8 @@ export const Background = ({variation}:BackgroundProps) => {
                     maskSize: '100% 100%',
                 }}
             ></div>
-            <div className={"MarginLine absolute bg-[#6AAAF6] opacity-[46%] w-[100%] h-[1px] bottom-17/50 md:bottom-29/50"}></div>
-            <div className={"MarginLine absolute bg-[#6AAAF6] opacity-[46%] w-[100%] h-[1px] bottom-22/77 md:bottom-26/50"}></div>
+            {/*<div className={"MarginLine absolute bg-[#6AAAF6] opacity-[46%] w-[100%] h-[1px] bottom-17/50 md:bottom-29/50"}></div>*/}
+            {/*<div className={"MarginLine absolute bg-[#6AAAF6] opacity-[46%] w-[100%] h-[1px] bottom-22/77 md:bottom-26/50"}></div>*/}
         </div>
     )
     if(variation === "flex-row-reverse") return (
@@ -32,8 +32,8 @@ export const Background = ({variation}:BackgroundProps) => {
                      maskSize: '100% 100%',
                  }}
             ></div>
-            <div className={"MarginLine absolute bg-[#6AAAF6] opacity-[46%] w-[100%] h-[1px] bottom-17/50 md:bottom-29/50"}></div>
-            <div className={"MarginLine absolute bg-[#6AAAF6] opacity-[46%] w-[100%] h-[1px] bottom-22/77 md:bottom-26/50"}></div>
+            {/*<div className={"MarginLine absolute bg-[#6AAAF6] opacity-[46%] w-[100%] h-[1px] bottom-17/50 md:bottom-29/50"}></div>*/}
+            {/*<div className={"MarginLine absolute bg-[#6AAAF6] opacity-[46%] w-[100%] h-[1px] bottom-22/77 md:bottom-26/50"}></div>*/}
         </div>
     )
     return (

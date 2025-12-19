@@ -11,6 +11,9 @@
     },
     "description": {
       "type": "text"
+    },
+    "richDescription": {
+      "type": "richtext"
     }
   },
   "config": {}

@@ -1,20 +1,13 @@
 type ScreenProps = {
-    children: React.ReactNode
-    backgroundColor?: string
-    half?: boolean,
-    minHeight?: boolean
+    children: React.ReactNode;
+    backgroundColor?: string;
+    classOverride?: string;
 }
 
-const Screen = ({children, backgroundColor="#EDEDED", half, minHeight}:ScreenProps) => {
+const Screen = ({children, backgroundColor="#EDEDED", classOverride}:ScreenProps) => {
     return (
-        <div style={{backgroundColor: backgroundColor}}>
-            { minHeight ?
-            <div style={{minHeight: half ? "50vh" : "100vh"}}  className={" w-full flex"}>
-                {children}
-            </div>
-            : <div style={{height: half ? "50vh" : "100vh"}}  className={" w-full flex"}>
+        <div style={{backgroundColor: backgroundColor}} className={`w-full flex ${classOverride}`}>
             {children}
-            </div> }
         </div>
 
     )

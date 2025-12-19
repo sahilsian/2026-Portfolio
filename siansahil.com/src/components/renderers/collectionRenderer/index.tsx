@@ -8,7 +8,6 @@ interface CollectionRendererProps {
 // Collection Factory
 const CollectionRenderer = ({blocks, collection}: CollectionRendererProps) => {
     return <div>
-
         {blocks?.map((block) => {
             switch (block?.variation.variation) {
                 case "collection": {

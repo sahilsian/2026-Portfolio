@@ -1,5 +1,5 @@
 import {createFileRoute} from '@tanstack/react-router'
-import {querySoftware, querySoftwareCollection} from "@/lib/gqlClient.ts";
+import {querySoftware, querySoftwareCollection} from "@/lib/graphQL/gqlClient.ts";
 import CollectionRenderer from "@/components/renderers/collectionRenderer";
 
 export const Route = createFileRoute('/software/')({
@@ -19,9 +19,8 @@ export const Route = createFileRoute('/software/')({
 
 function RouteComponent() {
     const { software, softwareLayout } = Route.useLoaderData()
-    console.log(software, softwareLayout)
     const blocks:any[] = [
-        softwareLayout.layout
+        softwareLayout.collection
     ]
 
     return <div>

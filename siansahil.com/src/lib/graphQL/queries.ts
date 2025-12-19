@@ -1,5 +1,5 @@
 import {gql} from "@apollo/client";
-import {BUTTON_FIELDS, IMAGE_FIELDS, VARIATION_FIELDS} from "@/lib/fragments.ts";
+import {BUTTON_FIELDS, IMAGE_FIELDS, VARIATION_FIELDS} from "@/lib/graphQL/fragments.ts";
 
 export const NO_LIMIT = { pagination: { limit: 100, start: 0 } };
 export const MENU = gql`
@@ -20,7 +20,7 @@ export const ARTWORK_PAGE = gql`
     ${VARIATION_FIELDS}
     query ArtworkLayout {
       artLayout {
-        layout {
+        collection {
           id
           variation {
             ...VariationFields
@@ -36,7 +36,7 @@ export const SOFTWARE_PAGE = gql`
     ${VARIATION_FIELDS}
     query SoftwareLayout {
       softwareLayout {
-        layout {
+        collection {
           id
           variation {
             ...VariationFields
@@ -182,10 +182,9 @@ export const ART_ITEM = gql`
                 }
                 description
                 tabs {
-                  tab {
-                    title
-                    description
-                  }
+                  title
+                  richDescription
+                  description
                 }
               }
     }
@@ -218,10 +217,9 @@ export const SOFTWARE_ITEM = gql`
                 }
                 description
                 tabs {
-                  tab {
-                    title
-                    description
-                  }
+                  title
+                  richDescription
+                  description
                 }
               }
     }

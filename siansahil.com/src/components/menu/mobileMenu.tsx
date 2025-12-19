@@ -1,17 +1,16 @@
 'use client'
-import {useState} from "react";
 import {MenuIcon, XIcon} from "lucide-react";
+import {useMobileMenu} from "@/hooks/useMobileMenu.ts";
 
-export const MobileMenu = () => {
-    const [showMenu, setShowMenu] = useState(false)
-
+export const MobileMenu = ({items:[]}) => {
+    const { isMobileMenu, toggleMobileMenu } = useMobileMenu();
     return (
         <div>
             <div className={"lg:hidden flex hover:cursor-pointer "}>
-                <div onClick={()=> setShowMenu(false) } style={ showMenu ? { display: 'flex' } : {  display: 'none'} }>
+                <div onClick={toggleMobileMenu} style={ isMobileMenu ? { display: 'flex' } : {  display: 'none'} }>
                     <XIcon />
                 </div>
-                <div onClick={()=> setShowMenu(true) } style={ !showMenu ? { display: 'flex' } : {  display: 'none'} }>
+                <div onClick={toggleMobileMenu} style={ !isMobileMenu ? { display: 'flex' } : {  display: 'none'} }>
                     <MenuIcon />
                 </div>
             </div>

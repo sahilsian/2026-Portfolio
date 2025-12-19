@@ -1,5 +1,5 @@
 import {createFileRoute} from '@tanstack/react-router'
-import {queryArtCollection, queryArtwork} from "@/lib/gqlClient.ts";
+import {queryArtCollection, queryArtwork} from "@/lib/graphQL/gqlClient.ts";
 import CollectionRenderer from "@/components/renderers/collectionRenderer";
 
 export const Route = createFileRoute('/art/')({
@@ -19,9 +19,8 @@ export const Route = createFileRoute('/art/')({
 
 function RouteComponent() {
     const { art, artLayout } = Route.useLoaderData()
-    console.log(artLayout)
     const blocks:any[] = [
-        artLayout.layout
+        artLayout.collection
     ]
 
   return <div>

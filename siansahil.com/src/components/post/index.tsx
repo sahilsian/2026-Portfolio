@@ -24,11 +24,15 @@ const Post =
     return (
         <div
             onClick={handleClick}
-            className={`max-w-[365px] min-w-[300px] mb-6 ${
+                className={`
+                max-w-[500px] flex-1 
+                 border-1 border-[#000000]
+                 hover:bg-[#ffffff]
+                 rounded-4xl transition-all p-6 min-w-[380px] mb-6 ${
                 clickable ? "cursor-pointer" : ""
             }`}
         >
-            <Image image={image} />
+            <Image image={image} className={'rounded-2xl'} />
             <Spacer height={"20px"} />
             <Typography underline level={"3"} value={title} />
             <Typography level={"p"} value={description} />

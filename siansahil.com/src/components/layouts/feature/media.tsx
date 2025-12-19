@@ -5,9 +5,9 @@ interface MediaProps {
 }
 export const Media = ({image}:MediaProps) => {
     return (
-        <div className={"w-full flex items-center justify-center flex-1"}>
+        <div className={"w-full flex items-center justify-center lg:flex-1"}>
             <div className={" p-6 md:p-8 xl:p-15 "}>
-                <Image className={"min-w-[300px] sm:max-h-[600px]"} image={image} />
+                <Image className={"min-w-[300px] "} image={image} />
             </div>
         </div>
     )

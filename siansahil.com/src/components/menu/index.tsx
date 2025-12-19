@@ -38,7 +38,7 @@ const Menu = ({title, menuItems, backgroundColor="#EDEDED"}:MenuProps) => {
                     </div>
                 })}
             </nav>
-            <MobileMenu></MobileMenu>
+            <MobileMenu items={menuItems}></MobileMenu>
         </header>
     )
 }

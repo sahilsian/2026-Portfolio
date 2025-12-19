@@ -1,5 +1,5 @@
 import { createFileRoute } from '@tanstack/react-router'
-import { querySoftwareProduct} from "@/lib/gqlClient.ts";
+import {querySoftwareProduct} from "@/lib/graphQL/gqlClient.ts";
 import ProductLayout from "@/components/layouts/product";
 
 export const Route = createFileRoute('/software/$id/$slug')({
@@ -7,7 +7,9 @@ export const Route = createFileRoute('/software/$id/$slug')({
     loader: async ({context, params}) => {
         const { id, slug } = params;
         const software = await context.queryClient.ensureQueryData({
-            queryFn: () => querySoftwareProduct(id),
+            queryFn: async () => {
+                return await querySoftwareProduct({ data: { documentId: id } })
+            },
             queryKey: ["software", id, slug]
         })
 

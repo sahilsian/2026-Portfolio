@@ -441,10 +441,10 @@ export interface ApiArtLayoutArtLayout extends Struct.SingleTypeSchema {
     draftAndPublish: true;
   };
   attributes: {
+    collection: Schema.Attribute.Component<'layout.collection', false>;
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
-    layout: Schema.Attribute.Component<'layout.collection', false>;
     locale: Schema.Attribute.String & Schema.Attribute.Private;
     localizations: Schema.Attribute.Relation<
       'oneToMany',
@@ -482,7 +482,7 @@ export interface ApiArtArt extends Struct.CollectionTypeSchema {
       Schema.Attribute.Unique;
     publishedAt: Schema.Attribute.DateTime;
     slug: Schema.Attribute.UID;
-    tabs: Schema.Attribute.Component<'control.tabs', false>;
+    tabs: Schema.Attribute.Component<'layout.tab', true>;
     title: Schema.Attribute.String;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
@@ -545,6 +545,7 @@ export interface ApiHomeHome extends Struct.SingleTypeSchema {
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
+    wrapper: Schema.Attribute.Component<'layout.wrapper', true>;
   };
 }
 
@@ -586,10 +587,10 @@ export interface ApiSoftwareLayoutSoftwareLayout
     draftAndPublish: true;
   };
   attributes: {
+    collection: Schema.Attribute.Component<'layout.collection', false>;
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
-    layout: Schema.Attribute.Component<'layout.collection', false>;
     locale: Schema.Attribute.String & Schema.Attribute.Private;
     localizations: Schema.Attribute.Relation<
       'oneToMany',
@@ -630,7 +631,6 @@ export interface ApiSoftwareSoftware extends Struct.CollectionTypeSchema {
       Schema.Attribute.Unique;
     publishedAt: Schema.Attribute.DateTime;
     slug: Schema.Attribute.String;
-    tabs: Schema.Attribute.Component<'control.tabs', false>;
     title: Schema.Attribute.String;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &

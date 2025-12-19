@@ -1,14 +1,15 @@
-'use client'
 import { useState } from "react";
 import Typography from "@/components/typography";
+import RichTextRenderer from "@/components/renderers/richTextRenderer";
 
-interface TabbedContentProps {
+export interface TabbedContentProps {
     tabs?: Tab[]
 }
 
 export interface Tab {
     title: string;
     description: string;
+    richDescription: string;
 }
 
 const TabbedContent = ({ tabs }: TabbedContentProps) => {
@@ -42,7 +43,7 @@ const TabbedContent = ({ tabs }: TabbedContentProps) => {
                             display: activeTitle === tab.title ? 'block' : 'none'
                         }}
                     >
-                        <Typography value={tab.description} />
+                        <RichTextRenderer richText={tab.richDescription}></RichTextRenderer>
                     </div>
                 ))}
             </div>

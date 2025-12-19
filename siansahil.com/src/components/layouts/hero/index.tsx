@@ -18,20 +18,22 @@ interface HeroLayoutProps {
 const HeroLayout = ({variation, image, title, description, profile, primary, secondary}:HeroLayoutProps) => {
 
     return (
-        <Screen>
-            <div className={`Hero relative h-full flex-1 flex ${variation}`}>
-                {/*absolute stack*/}
-                {/*desktop-screens*/}
-                <Media image={image} />
-                {/*mobile screens*/}
-                <Media mobile image={image} />
-                <Content
-                    profile={profile}
-                    title={title}
-                    description={description}
-                    primary={primary}
-                    secondary={secondary}
-                />
+        <Screen classOverride={"min-h-screen"}>
+            <div className={"flex w-full h-full flex-1 "}>
+                <div className={`Hero h-full flex flex-1 ${variation}`}>
+                    {/*absolute stack*/}
+                    {/*desktop-screens*/}
+                    <Media image={image} />
+                    {/*mobile screens*/}
+                    <Media mobile image={image} />
+                    <Content
+                        profile={profile}
+                        title={title}
+                        description={description}
+                        primary={primary}
+                        secondary={secondary}
+                    />
+                </div>
             </div>
         </Screen>
     )

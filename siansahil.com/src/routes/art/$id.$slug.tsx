@@ -1,13 +1,15 @@
-import { createFileRoute } from '@tanstack/react-router'
-import { queryArtProduct} from "@/lib/gqlClient.ts";
-import ProductLayout from "@/components/layouts/product";
+import {createFileRoute} from '@tanstack/react-router'
+import {queryArtProduct} from "@/lib/graphQL/gqlClient.ts";
+import ProductRenderer from "@/components/renderers/productRenderer";
 
 export const Route = createFileRoute('/art/$id/$slug')({
   component: RouteComponent,
     loader: async ({context, params}) => {
         const { id, slug } = params;
         const art = await context.queryClient.ensureQueryData({
-            queryFn: () => queryArtProduct(id),
+            queryFn: async () => {
+                return await queryArtProduct({ data: { documentId: id } })
+            },
             queryKey: ["art", id, slug]
         })
 
@@ -20,13 +22,10 @@ export const Route = createFileRoute('/art/$id/$slug')({
 function RouteComponent() {
     const { art } = Route.useLoaderData()
     return <div>
-        <ProductLayout
-            type={"art"}
-            title={art.title}
-            slug={art.slug}
-            image={art.image}
-            description={art.description}
-            tabs={art.tabs.tab}
-        />
+        <ProductRenderer
+            product={art}
+        >
+
+        </ProductRenderer>
     </div>
 }

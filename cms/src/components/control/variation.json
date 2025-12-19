@@ -13,7 +13,8 @@
         "feature",
         "featureReversed",
         "statement",
-        "collection"
+        "collection",
+        "product"
       ]
     }
   },

@@ -34,11 +34,6 @@
         "videos",
         "audios"
       ]
-    },
-    "tabs": {
-      "type": "component",
-      "component": "control.tabs",
-      "repeatable": false
     }
   }
 }

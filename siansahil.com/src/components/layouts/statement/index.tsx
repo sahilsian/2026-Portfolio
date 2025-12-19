@@ -9,7 +9,7 @@ interface FeatureLayoutProps {
 
 const StatementLayout = ({title, description, primary}:FeatureLayoutProps) => {
     return (
-        <Screen half>
+        <Screen classOverride={"py-20"}>
             <div className={`relative h-full flex-1 flex`}>
                 <div className={`flex z-20 w-full h-full`}>
                     <Content primary={primary} title={title} description={description} />

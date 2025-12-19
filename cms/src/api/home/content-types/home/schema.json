@@ -30,6 +30,11 @@
       "type": "component",
       "component": "layout.statement",
       "repeatable": false
+    },
+    "wrapper": {
+      "type": "component",
+      "component": "layout.wrapper",
+      "repeatable": true
     }
   }
 }

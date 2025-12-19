@@ -37,8 +37,8 @@
     },
     "tabs": {
       "type": "component",
-      "component": "control.tabs",
-      "repeatable": false
+      "component": "layout.tab",
+      "repeatable": true
     }
   }
 }

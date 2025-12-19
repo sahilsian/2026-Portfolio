@@ -11,7 +11,6 @@ export const Background = () => {
                      maskSize: '100% 100%',
                  }}
             ></div>
-            <div className={"MarginLine absolute bg-[#6AAAF6] opacity-[46%] w-[100%] h-[1px] top-[558px] block sm:hidden md:hidden lg:block  lg:top-[80px]"}></div>
         </div>
     )
 }

@@ -30,17 +30,6 @@ export interface ControlMenuItem extends Struct.ComponentSchema {
   };
 }
 
-export interface ControlTabs extends Struct.ComponentSchema {
-  collectionName: 'components_control_tabs';
-  info: {
-    displayName: 'tabs';
-    icon: 'hashtag';
-  };
-  attributes: {
-    tab: Schema.Attribute.Component<'layout.tab', true>;
-  };
-}
-
 export interface ControlVariation extends Struct.ComponentSchema {
   collectionName: 'components_control_variations';
   info: {
@@ -49,7 +38,14 @@ export interface ControlVariation extends Struct.ComponentSchema {
   };
   attributes: {
     variation: Schema.Attribute.Enumeration<
-      ['hero', 'feature', 'featureReversed', 'statement', 'collection']
+      [
+        'hero',
+        'feature',
+        'featureReversed',
+        'statement',
+        'collection',
+        'product',
+      ]
     >;
   };
 }
@@ -62,6 +58,20 @@ export interface LayoutCollection extends Struct.ComponentSchema {
   };
   attributes: {
     description: Schema.Attribute.Text;
+    title: Schema.Attribute.String;
+    variation: Schema.Attribute.Component<'control.variation', false>;
+  };
+}
+
+export interface LayoutFeature extends Struct.ComponentSchema {
+  collectionName: 'components_layout_features';
+  info: {
+    displayName: 'feature';
+    icon: 'apps';
+  };
+  attributes: {
+    description: Schema.Attribute.Text;
+    primary: Schema.Attribute.Component<'control.button', false>;
     title: Schema.Attribute.String;
     variation: Schema.Attribute.Component<'control.variation', false>;
   };
@@ -80,6 +90,26 @@ export interface LayoutGroup extends Struct.ComponentSchema {
     profile: Schema.Attribute.Media<'images' | 'files' | 'videos' | 'audios'>;
     secondary: Schema.Attribute.Component<'control.button', false>;
     title: Schema.Attribute.Text;
+    variation: Schema.Attribute.Component<'control.variation', false>;
+  };
+}
+
+export interface LayoutHero extends Struct.ComponentSchema {
+  collectionName: 'components_layout_heroes';
+  info: {
+    displayName: 'hero';
+    icon: 'apps';
+  };
+  attributes: {
+    description: Schema.Attribute.Text;
+    hero_image: Schema.Attribute.Media<
+      'images' | 'files' | 'videos' | 'audios'
+    >;
+    primary: Schema.Attribute.Component<'control.button', false>;
+    profile_image: Schema.Attribute.Media<
+      'images' | 'files' | 'videos' | 'audios'
+    >;
+    title: Schema.Attribute.String;
     variation: Schema.Attribute.Component<'control.variation', false>;
   };
 }
@@ -106,7 +136,22 @@ export interface LayoutTab extends Struct.ComponentSchema {
   };
   attributes: {
     description: Schema.Attribute.Text;
+    richDescription: Schema.Attribute.RichText;
     title: Schema.Attribute.String;
+  };
+}
+
+export interface LayoutWrapper extends Struct.ComponentSchema {
+  collectionName: 'components_layout_wrappers';
+  info: {
+    displayName: 'wrapper';
+    icon: 'apps';
+  };
+  attributes: {
+    art_primary: Schema.Attribute.Component<'layout.feature', false>;
+    art_secondary: Schema.Attribute.Component<'layout.feature', false>;
+    hero: Schema.Attribute.Component<'layout.hero', false>;
+    software_feature: Schema.Attribute.Component<'layout.feature', false>;
   };
 }
 
@@ -115,12 +160,14 @@ declare module '@strapi/strapi' {
     export interface ComponentSchemas {
       'control.button': ControlButton;
       'control.menu-item': ControlMenuItem;
-      'control.tabs': ControlTabs;
       'control.variation': ControlVariation;
       'layout.collection': LayoutCollection;
+      'layout.feature': LayoutFeature;
       'layout.group': LayoutGroup;
+      'layout.hero': LayoutHero;
       'layout.statement': LayoutStatement;
       'layout.tab': LayoutTab;
+      'layout.wrapper': LayoutWrapper;
     }
   }
 }

@@ -1,5 +1,5 @@
 import { createFileRoute } from '@tanstack/react-router';
-import { queryHome } from "@/lib/gqlClient.ts";
+import { queryHome } from "@/lib/graphQL/gqlClient.ts";
 import BlockRenderer from "@/components/renderers/blockRenderer";
 
 export const Route = createFileRoute('/')(
