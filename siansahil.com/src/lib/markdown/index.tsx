@@ -11,6 +11,7 @@ type RenderCtx = {
 // Procedure method implementation
 export type RenderProcedure = (token: Token, ctx: RenderCtx) => void;
 
+// Immutable reference
 export const GLOBAL_RENDER_ENVIRONMENT: ReadonlyMap<String, RenderProcedure> =
     new Map([
         [TokenType.HEADING, (token, ctx) =>

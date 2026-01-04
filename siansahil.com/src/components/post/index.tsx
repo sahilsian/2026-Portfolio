@@ -32,7 +32,7 @@ const Post =
                 clickable ? "cursor-pointer" : ""
             }`}
         >
-            <Image image={image} className={'rounded-2xl'} />
+            <Image image={image} className={'rounded-2xl w-full object-contain '} />
             <Spacer height={"20px"} />
             <Typography underline level={"3"} value={title} />
             <Typography level={"p"} value={description} />

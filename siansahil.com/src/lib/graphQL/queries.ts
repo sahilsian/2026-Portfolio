@@ -2,6 +2,14 @@ import {gql} from "@apollo/client";
 import {BUTTON_FIELDS, IMAGE_FIELDS, VARIATION_FIELDS} from "@/lib/graphQL/fragments.ts";
 
 export const NO_LIMIT = { pagination: { limit: 100, start: 0 } };
+
+export const STANDARD_PAGINATION = {
+    pagination: {
+        page: 1,
+        pageSize: 6,
+    }
+}
+
 export const MENU = gql`
     query Menu($pagination: PaginationArg) {
       menu {
@@ -56,84 +64,71 @@ export const HOME_PAGE = gql`
     query Home {
       home {
         documentId
-        hero {
-          id
-          title
-          description
-    
-          primary {
-            ...ButtonFields
-          }
-    
-          secondary {
-            ...ButtonFields
-          }
-    
-          image {
-            ...ImageFields
-          }
-    
-          profile {
-            ...ImageFields
-          }
-    
-          variation {
-            ...VariationFields
-          }
-        }
-    
-        featurePrimary {
-          id
-          title
-          description
-          variation {
-            ...VariationFields
-          }
-          secondary {
-            ...ButtonFields
-          }
-          profile {
-            ...ImageFields
-          }
-          primary {
-            ...ButtonFields
-          }
-          image {
-            ...ImageFields
-          }
-        }
-    
-        featureSecondary {
-          id
-          title
-          description
-          image {
-            ...ImageFields
-          }
-          primary {
-            ...ButtonFields
-          }
-          profile {
-            ...ImageFields
-          }
-          secondary {
-            ...ButtonFields
-          }
-          variation {
-            ...VariationFields
-          }
-        }
-    
-        statement {
-          id
-          title
-          description
-          variation {
-            ...VariationFields
-          }
-          primary {
-            ...ButtonFields
-          }
+        wrapper {
+            hero {
+              id
+              title
+              description
+        
+              primary {
+                ...ButtonFields
+              }
+        
+              hero_image {
+                ...ImageFields
+              }
+        
+              profile_image {
+                ...ImageFields
+              }
+        
+              variation {
+                ...VariationFields
+              }
+            }
+        
+            art_primary {
+              id
+              title
+              description
+              variation {
+                ...VariationFields
+              }
+              
+              primary {
+                ...ButtonFields
+              }
+              image {
+                ...ImageFields
+              }
+            }
+        
+            art_secondary {
+              id
+              title
+              description
+              image {
+                ...ImageFields
+              }
+              primary {
+                ...ButtonFields
+              }
+              variation {
+                ...VariationFields
+              }
+            }
+        
+            software_statement {
+              id
+              title
+              description
+              variation {
+                ...VariationFields
+              }
+              primary {
+                ...ButtonFields
+              }
+            }
         }
       }
     }
@@ -158,17 +153,25 @@ export const FOOTER = gql`
 export const ART_COLLECTION = gql`
     ${IMAGE_FIELDS}
     
-    query Arts {
-      arts(sort: "order:asc") {
-        title
-        description
-        slug
-        documentId
-        image {
+    query Arts_connection($pagination: PaginationArg) {
+        arts_connection(pagination: $pagination) {
+        nodes {
+          title
+          description
+          slug
+          documentId
+          image {
           ...ImageFields
+          }
+        }
+        pageInfo {
+          page
+          pageCount
+          pageSize
+          total
         }
       }
-    }   
+    }
 `;
 
 export const ART_ITEM = gql`
@@ -184,7 +187,6 @@ export const ART_ITEM = gql`
                 tabs {
                   title
                   richDescription
-                  description
                 }
               }
     }
@@ -219,7 +221,6 @@ export const SOFTWARE_ITEM = gql`
                 tabs {
                   title
                   richDescription
-                  description
                 }
               }
     }

@@ -11,16 +11,15 @@ interface FeatureLayoutProps {
     title: string;
     description: string;
     primary: ButtonData
-    secondary: ButtonData
 }
-const FeatureLayout = ({variation, image, title, description, primary, secondary}:FeatureLayoutProps) => {
+const FeatureLayout = ({variation, image, title, description, primary}:FeatureLayoutProps) => {
     return (
         <Screen>
             <div className={`Feature relative h-full flex-1 flex`}>
                 <Background variation={variation} />
                 <div className={`flex-col-reverse flex ${variation} flex-wrap z-20 w-full h-full`}>
                     <Media image={image} />
-                    <Content primary={primary} secondary={secondary} title={title} description={description} />
+                    <Content primary={primary} title={title} description={description} />
                 </div>
             </div>
         </Screen>

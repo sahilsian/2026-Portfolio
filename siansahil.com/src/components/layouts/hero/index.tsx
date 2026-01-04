@@ -13,9 +13,8 @@ interface HeroLayoutProps {
     title: string,
     description: string
     primary: ButtonData
-    secondary: ButtonData
 }
-const HeroLayout = ({variation, image, title, description, profile, primary, secondary}:HeroLayoutProps) => {
+const HeroLayout = ({variation, image, title, description, profile, primary}:HeroLayoutProps) => {
 
     return (
         <Screen classOverride={"min-h-screen"}>
@@ -31,7 +30,6 @@ const HeroLayout = ({variation, image, title, description, profile, primary, sec
                         title={title}
                         description={description}
                         primary={primary}
-                        secondary={secondary}
                     />
                 </div>
             </div>

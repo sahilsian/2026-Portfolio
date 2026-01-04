@@ -1,7 +1,7 @@
 // lib/gqlClient.ts
 import { GraphQLClient } from "graphql-request";
 import { createServerFn } from "@tanstack/react-start";
-import { z } from "zod";
+import {z} from "zod";
 import { env } from "cloudflare:workers";
 import {
     FOOTER,
@@ -13,7 +13,7 @@ import {
     ART_ITEM,
     SOFTWARE_PAGE,
     SOFTWARE_COLLECTION,
-    SOFTWARE_ITEM,
+    SOFTWARE_ITEM, STANDARD_PAGINATION,
 } from "@/lib/graphQL/queries.ts";
 
 // Helper to get the GraphQL client (server-side only)
@@ -54,14 +54,17 @@ export const queryFooter = createServerFn({ method: "GET" }).handler(() => {
 });
 
 // Collections
-export const queryArtCollection = createServerFn({ method: "GET" }).handler(() => {
-    const client = getGqlClient();
-    return client.request(ART_COLLECTION);
-});
+export const queryArtCollection =
+    createServerFn({ method: "GET" })
+        .inputValidator(z.object({pagination: z.object({page: z.number(), pageSize: z.number() })}) || z.undefined())
+        .handler(({data}) => {
+            const client = getGqlClient();
+            return client.request(ART_COLLECTION, data);
+        });
 
 export const querySoftwareCollection = createServerFn({ method: "GET" }).handler(() => {
     const client = getGqlClient();
-    return client.request(SOFTWARE_COLLECTION);
+    return client.request(SOFTWARE_COLLECTION, STANDARD_PAGINATION);
 });
 
 // Products - accepting a string parameter

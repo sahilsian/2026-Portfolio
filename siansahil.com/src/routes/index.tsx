@@ -29,10 +29,10 @@ export const Route = createFileRoute('/')(
 function HomePage() {
     const { home } = Route.useLoaderData();
     const blocks:any[] = [
-        home.hero,
-        home.featurePrimary,
-        home.featureSecondary,
-        home.statement,
+        home.wrapper.hero,
+        home.wrapper.art_primary,
+        home.wrapper.art_secondary,
+        home.wrapper.software_feature,
     ]
     return (
         <div>

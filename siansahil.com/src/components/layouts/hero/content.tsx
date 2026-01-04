@@ -7,9 +7,8 @@ interface ContentProps {
     description: string;
     profile: StrapiImage;
     primary: ButtonData,
-    secondary: ButtonData
 }
-export const Content = ({title="Test", description="Test", profile, primary, secondary}:ContentProps) => {
+export const Content = ({title="Test", description="Test", profile, primary}:ContentProps) => {
     return (
         <div className={"absolute lg:max-w-[900px] flex lg:items-center w-full py-32 px-4 lg:px-22 lg:mt-10"}>
             <div className={"w-full  z-20 max-w-[840px] px-4 lg:p-4"}>
@@ -20,9 +19,8 @@ export const Content = ({title="Test", description="Test", profile, primary, sec
                     <Typography value={title} level={"1"}></Typography>
                 </div>
                 <Typography value={description} level={"p"}></Typography>
-                <div className={"ControlGroup flex gap-4 mt-6 lg:mt-10"}>
+                <div className={"ControlGroup flex gap-4 mt-4"}>
                     <Button button={primary} ></Button>
-                    <Button button={secondary}></Button>
                 </div>
 
             </div>

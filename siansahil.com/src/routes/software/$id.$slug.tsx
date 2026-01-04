@@ -1,6 +1,6 @@
 import { createFileRoute } from '@tanstack/react-router'
 import {querySoftwareProduct} from "@/lib/graphQL/gqlClient.ts";
-import ProductLayout from "@/components/layouts/product";
+import ProductRenderer from "@/components/renderers/productRenderer";
 
 export const Route = createFileRoute('/software/$id/$slug')({
     component: RouteComponent,
@@ -22,13 +22,11 @@ export const Route = createFileRoute('/software/$id/$slug')({
 function RouteComponent() {
     const { software } = Route.useLoaderData()
     return <div>
-        <ProductLayout
+        <ProductRenderer
             type={"software"}
-            title={software.title}
-            slug={software.slug}
-            image={software.image}
-            description={software.description}
-            tabs={software.tabs.tab}
-        />
+            product={software}
+        >
+
+        </ProductRenderer>
     </div>
 }

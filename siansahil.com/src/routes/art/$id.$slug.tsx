@@ -23,6 +23,7 @@ function RouteComponent() {
     const { art } = Route.useLoaderData()
     return <div>
         <ProductRenderer
+            type={"art"}
             product={art}
         >
 

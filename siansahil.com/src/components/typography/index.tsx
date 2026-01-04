@@ -10,6 +10,7 @@ interface TypographyProps {
     underline?: boolean;
     inactive?: boolean;
     rich?: boolean;
+    highlighted?:boolean
 }
 
 const Typography = ({
@@ -18,7 +19,8 @@ const Typography = ({
                         alignment = "left",
                         underline,
                         inactive,
-                        rich
+                        rich,
+                        highlighted
                     }: TypographyProps) => {
 
     const fontClasses = rich ? getRichFontStyles(level) : getFontStyles(level);
@@ -31,7 +33,7 @@ const Typography = ({
     }[alignment];
 
     return (
-        <div className={`${fontClasses} ${alignmentClasses} ${underline && "underline"} ${inactive && "opacity-75"}`}>
+        <div className={`${highlighted && "text-[#b88a1f]"} ${fontClasses} ${alignmentClasses} ${underline && "underline"} ${inactive && "opacity-75"}`}>
             {value}
         </div>
     );

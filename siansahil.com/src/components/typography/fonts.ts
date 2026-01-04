@@ -6,7 +6,7 @@ export const FONT_STYLES_MAP: Record<Font, string> = {
     "3": " text-[1.75rem] font-medium font-serif",
     "4": " text-[1rem] font-medium leading-[1.4] font-serif",
     "5": " text-[1rem] font-medium leading-[1.5] font-serif",
-    "6": " text-[0.9rem] font-medium leading-[1.5] font-serif",
+    "6": " text-[1rem] font-medium leading-[1.5] font-serif",
     "p": " text-[1rem] md:text-[1.3rem] font-normal font-serif",
     "button": "text-[1rem] cursor-pointer font-normal font-serif underline",
 }

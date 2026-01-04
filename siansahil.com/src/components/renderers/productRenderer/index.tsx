@@ -4,13 +4,14 @@ import {Product} from "@/lib/graphQL/interfaces.ts";
 
 interface ProductRendererProps {
     product: Product;
-    blocks?: any[]
+    blocks?: any[];
+    type: string;
 }
 
-const ProductRenderer = ({blocks, product}:ProductRendererProps) => {
+const ProductRenderer = ({blocks, product, type}:ProductRendererProps) => {
     return <div>
         <ProductLayout
-            type={"art"}
+            type={type}
             title={product.title}
             slug={product.slug}
             image={product.image}

@@ -8,7 +8,6 @@ export interface TabbedContentProps {
 
 export interface Tab {
     title: string;
-    description: string;
     richDescription: string;
 }
 
