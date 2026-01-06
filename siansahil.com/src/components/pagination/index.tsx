@@ -1,18 +1,39 @@
 import {PaginationButton} from "@/components/pagination/button.tsx";
 import {ReactNode} from "react";
 
+/**
+ * Pagination metadata for a paginated collection.
+ */
 export interface PageInfoProps {
-    page: number,
-    pageCount: number,
-    pageSize?: number,
-    total?: number
+    /**
+     * The current page index (1-based).
+     */
+    page: number;
+
+    /**
+     * Total number of pages available.
+     */
+    pageCount?: number;
+
+    /**
+     * Number of items displayed per page.
+     */
+    pageSize: number;
+
+    /**
+     * Total number of items across all pages.
+     */
+    total?: number;
 }
-const Pagination = ({page, pageCount, pageSize, total}:PageInfoProps):React.JSX.Element => {
+
+interface PaginationProps extends PageInfoProps {
+}
+const Pagination = ({ page, pageCount, pageSize}:PaginationProps):React.JSX.Element => {
     const createButtonElements = (pageCount:number):ReactNode => {
         var elements = []
 
         for(let i:number = 0; i < pageCount; i++) {
-            elements.push(<PaginationButton selectedPage={page} idx={i+1}></PaginationButton>)
+            elements.push(<PaginationButton pageSize={pageSize} selectedPage={page} idx={i+1}></PaginationButton>)
         }
 
         return elements
@@ -20,7 +41,7 @@ const Pagination = ({page, pageCount, pageSize, total}:PageInfoProps):React.JSX.
     return (
         <div className={'flex gap-2'}>
             {
-                createButtonElements(pageCount)
+                createButtonElements(pageCount || 0)
             }
         </div>
     )

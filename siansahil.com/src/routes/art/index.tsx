@@ -23,7 +23,7 @@ export const Route = createFileRoute('/art/')({
             queryFn: queryArtwork,
             queryKey: ["artLayout"]
         })
-        const art = await context.queryClient.ensureQueryData({
+        const art = await context.queryClient.fetchQuery({
             queryFn: () => queryArtCollection({
                 data: {pagination}
             }),

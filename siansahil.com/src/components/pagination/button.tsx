@@ -1,17 +1,19 @@
 import Typography from "@/components/typography";
+import {Link} from "@tanstack/react-router";
 
 interface PaginationButton {
     idx:number,
-    selectedPage:number
+    selectedPage: number,
+    pageSize: number
 }
-export const PaginationButton = ({idx, selectedPage}:PaginationButton) => {
-    const handlePaginate = () => {
-
-    }
+export const PaginationButton = ({pageSize, idx, selectedPage}:PaginationButton) => {
 
     return (
-        <div onClick={handlePaginate} className={"hover:opacity-70 cursor-pointer"}>
-            <Typography highlighted={idx == selectedPage} underline level={"6"} value={idx.toString()}></Typography>
-        </div>
+        <Link to={'.'} search={{ page: idx, pageSize: pageSize }}>
+            <div className={"hover:opacity-70 cursor-pointer"}>
+                <Typography highlighted={idx == selectedPage} underline level={"6"} value={idx.toString()}></Typography>
+            </div>
+        </Link>
+
     )
 }

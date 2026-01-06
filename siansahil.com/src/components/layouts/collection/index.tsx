@@ -1,6 +1,7 @@
-import {List, PageInfoProps} from "@/components/layouts/collection/list.tsx";
+import {List} from "@/components/layouts/collection/list.tsx";
 import {Content} from "@/components/layouts/collection/content.tsx";
 import {Background} from "@/components/layouts/collection/background.tsx";
+import {PageInfoProps} from "@/components/pagination";
 
 interface CollectionProps {
     collection: any[];

@@ -21,9 +21,9 @@
       "component": "layout.feature",
       "repeatable": false
     },
-    "software_feature": {
+    "software_statement": {
       "type": "component",
-      "component": "layout.feature",
+      "component": "layout.statement",
       "repeatable": false
     }
   },

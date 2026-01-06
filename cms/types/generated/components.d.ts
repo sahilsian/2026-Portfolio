@@ -71,6 +71,7 @@ export interface LayoutFeature extends Struct.ComponentSchema {
   };
   attributes: {
     description: Schema.Attribute.Text;
+    image: Schema.Attribute.Media<'images' | 'files' | 'videos' | 'audios'>;
     primary: Schema.Attribute.Component<'control.button', false>;
     title: Schema.Attribute.String;
     variation: Schema.Attribute.Component<'control.variation', false>;
@@ -135,7 +136,6 @@ export interface LayoutTab extends Struct.ComponentSchema {
     icon: 'apps';
   };
   attributes: {
-    description: Schema.Attribute.Text;
     richDescription: Schema.Attribute.RichText;
     title: Schema.Attribute.String;
   };
@@ -151,7 +151,7 @@ export interface LayoutWrapper extends Struct.ComponentSchema {
     art_primary: Schema.Attribute.Component<'layout.feature', false>;
     art_secondary: Schema.Attribute.Component<'layout.feature', false>;
     hero: Schema.Attribute.Component<'layout.hero', false>;
-    software_feature: Schema.Attribute.Component<'layout.feature', false>;
+    software_statement: Schema.Attribute.Component<'layout.statement', false>;
   };
 }
 

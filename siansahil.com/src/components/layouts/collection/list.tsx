@@ -14,7 +14,7 @@ interface ListProps {
 const PostWithRouter = withRouter(Post);
 export const List = ({collection, pageInfo}:ListProps) => {
     return (
-        <Control page={pageInfo.page} pageCount={pageInfo.pageCount} pageSize={pageInfo.pageSize} total={pageInfo.total} collection={collection}>
+        <Control pageCount={pageInfo.pageCount} total={pageInfo.total}>
             <div className={"flex relative z-index-[20] flex-wrap gap-4 "}>
                 {collection.map((item) => {
                     return <PostWithRouter

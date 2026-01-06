@@ -534,18 +534,14 @@ export interface ApiHomeHome extends Struct.SingleTypeSchema {
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
-    featurePrimary: Schema.Attribute.Component<'layout.group', false>;
-    featureSecondary: Schema.Attribute.Component<'layout.group', false>;
-    hero: Schema.Attribute.Component<'layout.group', false>;
     locale: Schema.Attribute.String & Schema.Attribute.Private;
     localizations: Schema.Attribute.Relation<'oneToMany', 'api::home.home'> &
       Schema.Attribute.Private;
     publishedAt: Schema.Attribute.DateTime;
-    statement: Schema.Attribute.Component<'layout.statement', false>;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
-    wrapper: Schema.Attribute.Component<'layout.wrapper', true>;
+    wrapper: Schema.Attribute.Component<'layout.wrapper', false>;
   };
 }
 

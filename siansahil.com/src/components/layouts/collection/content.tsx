@@ -6,7 +6,7 @@ interface ContentProps {
 }
 export const Content = ({title, description}:ContentProps) => {
     return (
-        <div className={ `py-20 pb-6`}>
+        <div className={ `py-22 pb-6`}>
             <Typography level={"2"} value={title}></Typography>
             <Typography level={"p"} value={description}></Typography>
         </div>

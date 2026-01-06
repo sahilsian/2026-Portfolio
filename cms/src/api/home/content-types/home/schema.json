@@ -11,30 +11,10 @@
   },
   "pluginOptions": {},
   "attributes": {
-    "hero": {
-      "type": "component",
-      "component": "layout.group",
-      "repeatable": false
-    },
-    "featurePrimary": {
-      "type": "component",
-      "component": "layout.group",
-      "repeatable": false
-    },
-    "featureSecondary": {
-      "type": "component",
-      "component": "layout.group",
-      "repeatable": false
-    },
-    "statement": {
-      "type": "component",
-      "component": "layout.statement",
-      "repeatable": false
-    },
     "wrapper": {
       "type": "component",
       "component": "layout.wrapper",
-      "repeatable": true
+      "repeatable": false
     }
   }
 }
