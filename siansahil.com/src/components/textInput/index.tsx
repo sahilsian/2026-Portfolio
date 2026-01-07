@@ -1,15 +1,19 @@
 import Input from "@/components/input";
+import {KeyboardEventHandler} from "react";
 
 interface TextInputProps {
-    handleChange: () => void,
-    value: string
+    handleChange: (e:any) => void,
+    value: string,
+    placeholder?: string;
+    onEnter: KeyboardEventHandler<HTMLInputElement>;
+    disabled: boolean
 }
 
-const TextInput = ({handleChange, value}:TextInputProps) => {
+const TextInput = ({disabled, handleChange, value, placeholder="Text Input...", onEnter}:TextInputProps) => {
 
     return (
-        <div className={'px-2 py-2 border-1 border-[#000000]'}>
-            <Input handleChange={handleChange} value={value} placeholder={"Text input..."} type={"text"}></Input>
+        <div className={` ${disabled && "bg-[#E3E3E3] text-gray-500"} transition-all px-[6px] py-[4px] border-b-1 border-[#000000]`}>
+            <Input disabled={disabled} onEnter={onEnter} handleChange={handleChange} value={value} placeholder={placeholder} type={"text"}></Input>
         </div>
     )
 }

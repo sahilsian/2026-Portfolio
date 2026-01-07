@@ -9,11 +9,10 @@ import {
     ARTWORK_PAGE,
     MENU,
     NO_LIMIT,
-    ART_COLLECTION,
     ART_ITEM,
     SOFTWARE_PAGE,
     SOFTWARE_COLLECTION,
-    SOFTWARE_ITEM, STANDARD_PAGINATION,
+    SOFTWARE_ITEM, STANDARD_PAGINATION, PRODUCT_COLLECTION, CATEGORIES,
 } from "@/lib/graphQL/queries.ts";
 
 // Helper to get the GraphQL client (server-side only)
@@ -54,13 +53,40 @@ export const queryFooter = createServerFn({ method: "GET" }).handler(() => {
 });
 
 // Collections
-export const queryArtCollection =
+export const queryProductCollection =
     createServerFn({ method: "GET" })
-        .inputValidator(z.object({pagination: z.object({page: z.number(), pageSize: z.number() })}) || z.undefined())
+        .inputValidator(
+            z.object({
+                filters: z
+                    .object({
+                        title: z.object({
+                            contains: z.string(),
+                        }).optional(),
+                        category: z.object({
+                            name: z.object({
+                                eqi: z.string()
+                            }),
+                        }).optional(),
+                    })
+                    .optional(),
+
+                pagination: z
+                    .object({
+                        page: z.number(),
+                        pageSize: z.number(),
+                    })
+                    .optional(),
+            })
+        )
         .handler(({data}) => {
             const client = getGqlClient();
-            return client.request(ART_COLLECTION, data);
+            return client.request(PRODUCT_COLLECTION, data);
         });
+
+export const queryCategories = createServerFn({ method: "GET" }).handler(() => {
+    const client = getGqlClient();
+    return client.request(CATEGORIES)
+})
 
 export const querySoftwareCollection = createServerFn({ method: "GET" }).handler(() => {
     const client = getGqlClient();

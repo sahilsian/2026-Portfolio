@@ -10,6 +10,7 @@ export const STANDARD_PAGINATION = {
     }
 }
 
+
 export const MENU = gql`
     query Menu($pagination: PaginationArg) {
       menu {
@@ -36,6 +37,18 @@ export const ARTWORK_PAGE = gql`
           title
           description
         }
+      }
+    }
+`
+
+export const CATEGORIES = gql`
+    query Categories {
+      categories {
+        category {
+          name
+        }
+        layoutTitle
+        layoutDescription
       }
     }
 `
@@ -150,16 +163,19 @@ export const FOOTER = gql`
 
 `;
 
-export const ART_COLLECTION = gql`
+export const PRODUCT_COLLECTION = gql`
     ${IMAGE_FIELDS}
     
-    query Arts_connection($pagination: PaginationArg) {
-        arts_connection(pagination: $pagination) {
+    query Products_connection($pagination: PaginationArg, $filters: ProductFiltersInput) {
+        products_connection(pagination: $pagination, filters: $filters) {
         nodes {
           title
           description
           slug
           documentId
+          category {
+            name
+          }
           image {
           ...ImageFields
           }

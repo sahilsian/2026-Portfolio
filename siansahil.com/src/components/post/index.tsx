@@ -28,7 +28,7 @@ const Post =
                 max-w-[500px] flex-1 
                  border-1 border-[#000000]
                  hover:bg-[#ffffff]
-                 rounded-4xl transition-all p-6 min-w-[380px] mb-6 ${
+                 rounded-4xl transition-all p-6 lg:min-w-[380px]  min-w-[340px] mb-6 ${
                 clickable ? "cursor-pointer" : ""
             }`}
         >

@@ -1,12 +1,16 @@
+import {ChangeEvent, HTMLInputTypeAttribute, KeyboardEventHandler} from "react";
+
 interface InputProps {
     placeholder: string;
-    type: string;
+    type: HTMLInputTypeAttribute;
     value: string;
-    handleChange: () => void;
+    handleChange: (e:ChangeEvent<HTMLInputElement>) => void;
+    onEnter?: KeyboardEventHandler<HTMLInputElement>;
+    disabled: boolean
 }
 
-const Input = ({placeholder = "text here", type="text", value, handleChange}:InputProps) => {
-    return <input onChange={handleChange} type={type} placeholder={placeholder} value={value} className={'w-full'} />
+const Input = ({disabled, placeholder = "text here", type="text", value, handleChange, onEnter}:InputProps) => {
+    return <input disabled={disabled} onKeyDown={onEnter} onChange={handleChange} type={type} placeholder={placeholder} value={value} className={'w-full outline-none'} />
 }
 
 export default Input

@@ -14,6 +14,19 @@ export interface ControlButton extends Struct.ComponentSchema {
   };
 }
 
+export interface ControlCategory extends Struct.ComponentSchema {
+  collectionName: 'components_control_categories';
+  info: {
+    displayName: 'category';
+    icon: 'archive';
+  };
+  attributes: {
+    name: Schema.Attribute.Enumeration<
+      ['all', 'art', 'software', 'photography', 'design']
+    >;
+  };
+}
+
 export interface ControlMenuItem extends Struct.ComponentSchema {
   collectionName: 'components_control_menu_items';
   info: {
@@ -159,6 +172,7 @@ declare module '@strapi/strapi' {
   export module Public {
     export interface ComponentSchemas {
       'control.button': ControlButton;
+      'control.category': ControlCategory;
       'control.menu-item': ControlMenuItem;
       'control.variation': ControlVariation;
       'layout.collection': LayoutCollection;

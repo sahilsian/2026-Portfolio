@@ -1,5 +1,6 @@
 import {PaginationButton} from "@/components/pagination/button.tsx";
 import {ReactNode} from "react";
+import Typography from "@/components/typography";
 
 /**
  * Pagination metadata for a paginated collection.
@@ -23,12 +24,15 @@ export interface PageInfoProps {
     /**
      * Total number of items across all pages.
      */
-    total?: number;
+    total: number;
 }
 
 interface PaginationProps extends PageInfoProps {
 }
-const Pagination = ({ page, pageCount, pageSize}:PaginationProps):React.JSX.Element => {
+const Pagination = ({ page, pageCount, pageSize, total}:PaginationProps):React.JSX.Element => {
+
+    const start = (page - 1) * pageSize + 1;
+    const end = Math.min(page * pageSize, total);
     const createButtonElements = (pageCount:number):ReactNode => {
         var elements = []
 
@@ -39,10 +43,17 @@ const Pagination = ({ page, pageCount, pageSize}:PaginationProps):React.JSX.Elem
         return elements
     }
     return (
-        <div className={'flex gap-2'}>
-            {
-                createButtonElements(pageCount || 0)
-            }
+        <div className={'flex-col sm:flex-row flex sm:gap-6'}>
+            <div className={"flex items-center gap-[5px]"}>
+                <Typography level={'6'} value={`${start}-${end}`}></Typography>
+                <Typography level={'6'} value={"of"}></Typography>
+                <Typography level={'6'} value={total.toString()}></Typography>
+            </div>
+            <div className={'flex gap-2'}>
+                {
+                    createButtonElements(pageCount || 0)
+                }
+            </div>
         </div>
     )
 }

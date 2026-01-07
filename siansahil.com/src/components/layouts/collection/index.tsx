@@ -2,20 +2,27 @@ import {List} from "@/components/layouts/collection/list.tsx";
 import {Content} from "@/components/layouts/collection/content.tsx";
 import {Background} from "@/components/layouts/collection/background.tsx";
 import {PageInfoProps} from "@/components/pagination";
+import {useControl} from "@/hooks/useControl.ts";
+import {CollectionCategory} from "@/components/renderers/collectionRenderer";
 
 interface CollectionProps {
     collection: any[];
-    title: string;
-    description: string;
     type: string;
     pageInfo: PageInfoProps;
+    categories: CollectionCategory[]
 }
-const Collection = ({collection, pageInfo, title, description, type}:CollectionProps) => {
+const Collection = ({collection, pageInfo, type, categories}:CollectionProps) => {
+    const controlMachine = useControl()
+
+    const { layoutTitle, layoutDescription } = categories.find((category) =>
+        category.category.name == controlMachine.state.category
+    ) || {}
+
     return (
         <div className={`Collection ${type} lg:px-22 px-6 bg-[#EDEDED] relative`}>
             <Background></Background>
-            <Content title={title} description={description}></Content>
-            <List pageInfo={pageInfo} collection={collection}></List>
+            <Content controlMachine={controlMachine} title={layoutTitle} description={layoutDescription}></Content>
+            <List categories={categories} controlMachine={controlMachine} pageInfo={pageInfo} collection={collection}></List>
         </div>
     )
 }

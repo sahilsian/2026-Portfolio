@@ -1,5 +1,5 @@
 import Typography from "@/components/typography";
-import Button, {ButtonData} from "@/components/button";
+import Button, {ButtonData} from "@/components/routerButton";
 import Image, {StrapiImage} from "@/components/image";
 
 interface ContentProps {

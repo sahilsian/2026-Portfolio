@@ -3,7 +3,7 @@ import {Content} from "@/components/layouts/feature/content.tsx";
 import {Background} from "@/components/layouts/feature/background.tsx";
 import { Media } from "./media";
 import {StrapiImage} from "@/components/image";
-import {ButtonData} from "@/components/button";
+import {ButtonData} from "@/components/routerButton";
 
 interface FeatureLayoutProps {
     variation: string;

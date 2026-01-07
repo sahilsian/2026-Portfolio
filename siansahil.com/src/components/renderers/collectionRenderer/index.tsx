@@ -1,32 +1,28 @@
 import Collection from "@/components/layouts/collection";
-import {PageInfoProps} from "@/components/layouts/collection/list.tsx";
+import {PageInfoProps} from "@/components/pagination";
 
 interface CollectionRendererProps {
     blocks?: any[];
     collection: any[];
     type: string;
     pageInfo: PageInfoProps
+    categories: CollectionCategory[]
+}
+
+export interface CollectionCategory {
+    category: { name: string }
+    layoutTitle: string
+    layoutDescription: string
 }
 
 // Collection Factory
-const CollectionRenderer = ({blocks, collection, type, pageInfo}: CollectionRendererProps) => {
-    return <div>
-        {blocks?.map((block) => {
-            switch (block?.variation.variation) {
-                case "collection": {
-                    // Standard Collection
-                    return <Collection
-                        type={type}
-                        key={block.id}
-                        title={block.title}
-                        description={block.description}
-                        collection={collection}
-                        pageInfo={pageInfo}
-                    ></Collection>
-                }
-            }
-        })}
-    </div>
+const CollectionRenderer = ({collection, type, pageInfo, categories}: CollectionRendererProps) => {
+    return <Collection
+            type={type}
+            collection={collection}
+            pageInfo={pageInfo}
+            categories={categories}
+        ></Collection>
 }
 
 export default CollectionRenderer

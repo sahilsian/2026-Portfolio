@@ -1,14 +1,22 @@
-'use client'
-import Input from "@/components/input";
-import {useState} from "react";
+import DropdownOption, {DropdownOptionProps} from "@/components/dropdownInput/option.tsx";
+import {ChangeEvent} from "react";
 
 interface DropdownInputProps {
     value: string
+    handleChange: (e:ChangeEvent<HTMLSelectElement>) => void,
+    disabled: boolean
+    options?: DropdownOptionProps[]
 }
-const DropdownInput = ({value}:DropdownInputProps) => {
+const DropdownInput = ({value, handleChange, disabled, options}:DropdownInputProps) => {
     return (
         <div>
-            <Input placeholder={"Select an item..."} type={"button"} value={value}></Input>
+            <div >
+                <select value={value} onChange={handleChange} disabled={disabled}>
+                    {options && options.map((option) => {
+                        return <DropdownOption name={option.name}></DropdownOption>
+                    })}
+                </select>
+            </div>
         </div>
     )
 }

@@ -1,22 +1,33 @@
+'use client'
 import {PropsWithChildren, useEffect} from "react";
 import Typography from "@/components/typography";
 import Pagination from "@/components/pagination";
-import {useControl} from "@/hooks/useControl.ts";
-import {useRouterState, useSearch} from "@tanstack/react-router";
+import {useNavigate, useRouterState, useSearch} from "@tanstack/react-router";
 import {STANDARD_PAGINATION} from "@/lib/graphQL/queries.ts";
+import SearchInput from "@/components/searchInput";
+import {ControlInterface} from "@/hooks/useControl.ts";
+import CategoryInput from "@/components/categoryInput";
+import {CollectionCategory} from "@/components/renderers/collectionRenderer";
 
 interface ControlProps extends PropsWithChildren {
+    controlMachine: ControlInterface
     pageCount?: number,
     total?: number;
+    categories: CollectionCategory[]
 }
 
-export const Control = ({ pageCount, total=0, children}:ControlProps) => {
+export const Control = ({ controlMachine, pageCount, total=0, children, categories}:ControlProps) => {
     const search = useSearch({ strict: false });
-    const controlMachine = useControl()
     const routerState = useRouterState()
+    const navigate = useNavigate()
 
     const currentPage = search.page || STANDARD_PAGINATION.pagination.page;
     const currentPageSize = search.pageSize || STANDARD_PAGINATION.pagination.pageSize;
+
+    const categoryOptions = categories.map((category) => {
+        return { name: category.category.name }
+    })
+
 
     // Loading effects
     useEffect(() => {
@@ -32,42 +43,83 @@ export const Control = ({ pageCount, total=0, children}:ControlProps) => {
         }
     }, [routerState.status]);
 
-    const start = (currentPage - 1) * currentPageSize + 1;
-    const end = Math.min(currentPage * currentPageSize, total);
+
+    // State Updates
+    const handleSearchChange = (e:any) => {
+        controlMachine.pushSearch(e.target.value)
+    }
+    const handleClear = async () => {
+        controlMachine.clearSearch();
+        await navigate({
+            to: ".",
+            search: (prev:any) => ({
+                ...prev,
+                title: ""
+            })
+        })
+
+    }
+
+    // State Commits
+    const handleSearch = async () => {
+        controlMachine.commitSearch();
+        await navigate({
+            to: ".",
+            search: (prev:any) => ({
+                ...prev,
+                title: controlMachine.state.search
+            })
+        })
+    }
+    const handleCategoryChange = async(e:any) => {
+        const newCategory = e.target.value
+        controlMachine.pushCategory(newCategory)
+        await navigate({
+            to: ".",
+            search: (prev:any) => ({
+                ...prev,
+                category: newCategory
+            })
+        })
+    }
 
     return (
         <div className={'relative z-10 '}>
-            <div className={'flex justify-between mb-2'}>
-                <div className={'flex gap-8'}>
-                    <div className={"flex items-center gap-[5px]"}>
-                        <Typography level={'6'} value={"Showing"}></Typography>
-                        <Typography level={'6'} value={`${start}-${end}`}></Typography>
-                        <Typography level={'6'} value={"items"}></Typography>
-                        <Typography level={'6'} value={"of"}></Typography>
-                        <Typography level={'6'} value={total.toString()}></Typography>
-                    </div>
+            <div className={'sm:flex sm:justify-between mb-2'}>
+                <div className={'flex sm:justify-start justify-between gap-8 sm:items-center'}>
                     <div>
                         <Pagination page={currentPage} pageCount={pageCount} pageSize={currentPageSize} total={total}></Pagination>
                     </div>
                     <div>
-
+                        <SearchInput
+                            onEnter={async(e) => {
+                                if(e.key === "Enter") await handleSearch()
+                            }}
+                            disabled={controlMachine.state.mode === "LOADING"}
+                            showClear={!!controlMachine.state.search}
+                            onClear={handleClear}
+                            onSearch={handleSearch}
+                            handleChange={(e:any) => handleSearchChange(e)}
+                            value={controlMachine.state.search || ''}
+                        ></SearchInput>
                     </div>
                 </div>
 
                 <div>
-
-
-                    {controlMachine.state.mode == "LOADING" &&
-                        <div>
-                            <Typography level={"6"} value={"Loading..."}></Typography>
-                        </div>
-                    }
-
+                    <div className={"max-w-[100px] ml-auto"}>
+                        <CategoryInput
+                            value={controlMachine.state.category || ''}
+                            handleChange={(e:any) => handleCategoryChange(e)}
+                            disabled={controlMachine.state.mode === "LOADING"}
+                            options={categoryOptions}
+                        >
+                        </CategoryInput>
+                    </div>
                 </div>
             </div>
 
             {controlMachine.state.mode != "ERR" ?
-                <div>
+                <div className={'py-4'}>
                     {children}
                 </div>
                 :

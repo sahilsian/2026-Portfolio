@@ -10,10 +10,8 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
-import { Route as SoftwareIndexRouteImport } from './routes/software/index'
-import { Route as ArtIndexRouteImport } from './routes/art/index'
-import { Route as SoftwareIdSlugRouteImport } from './routes/software/$id.$slug'
-import { Route as ArtIdSlugRouteImport } from './routes/art/$id.$slug'
+import { Route as ProductsIndexRouteImport } from './routes/products/index'
+import { Route as ProductsIdSlugRouteImport } from './routes/products/$id.$slug'
 import { Route as ApiTrpcSplatRouteImport } from './routes/api.trpc.$'
 
 const IndexRoute = IndexRouteImport.update({
@@ -21,24 +19,14 @@ const IndexRoute = IndexRouteImport.update({
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
-const SoftwareIndexRoute = SoftwareIndexRouteImport.update({
-  id: '/software/',
-  path: '/software/',
+const ProductsIndexRoute = ProductsIndexRouteImport.update({
+  id: '/products/',
+  path: '/products/',
   getParentRoute: () => rootRouteImport,
 } as any)
-const ArtIndexRoute = ArtIndexRouteImport.update({
-  id: '/art/',
-  path: '/art/',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const SoftwareIdSlugRoute = SoftwareIdSlugRouteImport.update({
-  id: '/software/$id/$slug',
-  path: '/software/$id/$slug',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const ArtIdSlugRoute = ArtIdSlugRouteImport.update({
-  id: '/art/$id/$slug',
-  path: '/art/$id/$slug',
+const ProductsIdSlugRoute = ProductsIdSlugRouteImport.update({
+  id: '/products/$id/$slug',
+  path: '/products/$id/$slug',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ApiTrpcSplatRoute = ApiTrpcSplatRouteImport.update({
@@ -49,63 +37,36 @@ const ApiTrpcSplatRoute = ApiTrpcSplatRouteImport.update({
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
-  '/art': typeof ArtIndexRoute
-  '/software': typeof SoftwareIndexRoute
+  '/products': typeof ProductsIndexRoute
   '/api/trpc/$': typeof ApiTrpcSplatRoute
-  '/art/$id/$slug': typeof ArtIdSlugRoute
-  '/software/$id/$slug': typeof SoftwareIdSlugRoute
+  '/products/$id/$slug': typeof ProductsIdSlugRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
-  '/art': typeof ArtIndexRoute
-  '/software': typeof SoftwareIndexRoute
+  '/products': typeof ProductsIndexRoute
   '/api/trpc/$': typeof ApiTrpcSplatRoute
-  '/art/$id/$slug': typeof ArtIdSlugRoute
-  '/software/$id/$slug': typeof SoftwareIdSlugRoute
+  '/products/$id/$slug': typeof ProductsIdSlugRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
-  '/art/': typeof ArtIndexRoute
-  '/software/': typeof SoftwareIndexRoute
+  '/products/': typeof ProductsIndexRoute
   '/api/trpc/$': typeof ApiTrpcSplatRoute
-  '/art/$id/$slug': typeof ArtIdSlugRoute
-  '/software/$id/$slug': typeof SoftwareIdSlugRoute
+  '/products/$id/$slug': typeof ProductsIdSlugRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths:
-    | '/'
-    | '/art'
-    | '/software'
-    | '/api/trpc/$'
-    | '/art/$id/$slug'
-    | '/software/$id/$slug'
+  fullPaths: '/' | '/products' | '/api/trpc/$' | '/products/$id/$slug'
   fileRoutesByTo: FileRoutesByTo
-  to:
-    | '/'
-    | '/art'
-    | '/software'
-    | '/api/trpc/$'
-    | '/art/$id/$slug'
-    | '/software/$id/$slug'
-  id:
-    | '__root__'
-    | '/'
-    | '/art/'
-    | '/software/'
-    | '/api/trpc/$'
-    | '/art/$id/$slug'
-    | '/software/$id/$slug'
+  to: '/' | '/products' | '/api/trpc/$' | '/products/$id/$slug'
+  id: '__root__' | '/' | '/products/' | '/api/trpc/$' | '/products/$id/$slug'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
-  ArtIndexRoute: typeof ArtIndexRoute
-  SoftwareIndexRoute: typeof SoftwareIndexRoute
+  ProductsIndexRoute: typeof ProductsIndexRoute
   ApiTrpcSplatRoute: typeof ApiTrpcSplatRoute
-  ArtIdSlugRoute: typeof ArtIdSlugRoute
-  SoftwareIdSlugRoute: typeof SoftwareIdSlugRoute
+  ProductsIdSlugRoute: typeof ProductsIdSlugRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -117,32 +78,18 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/software/': {
-      id: '/software/'
-      path: '/software'
-      fullPath: '/software'
-      preLoaderRoute: typeof SoftwareIndexRouteImport
+    '/products/': {
+      id: '/products/'
+      path: '/products'
+      fullPath: '/products'
+      preLoaderRoute: typeof ProductsIndexRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/art/': {
-      id: '/art/'
-      path: '/art'
-      fullPath: '/art'
-      preLoaderRoute: typeof ArtIndexRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/software/$id/$slug': {
-      id: '/software/$id/$slug'
-      path: '/software/$id/$slug'
-      fullPath: '/software/$id/$slug'
-      preLoaderRoute: typeof SoftwareIdSlugRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/art/$id/$slug': {
-      id: '/art/$id/$slug'
-      path: '/art/$id/$slug'
-      fullPath: '/art/$id/$slug'
-      preLoaderRoute: typeof ArtIdSlugRouteImport
+    '/products/$id/$slug': {
+      id: '/products/$id/$slug'
+      path: '/products/$id/$slug'
+      fullPath: '/products/$id/$slug'
+      preLoaderRoute: typeof ProductsIdSlugRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/api/trpc/$': {
@@ -157,11 +104,9 @@ declare module '@tanstack/react-router' {
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
-  ArtIndexRoute: ArtIndexRoute,
-  SoftwareIndexRoute: SoftwareIndexRoute,
+  ProductsIndexRoute: ProductsIndexRoute,
   ApiTrpcSplatRoute: ApiTrpcSplatRoute,
-  ArtIdSlugRoute: ArtIdSlugRoute,
-  SoftwareIdSlugRoute: SoftwareIdSlugRoute,
+  ProductsIdSlugRoute: ProductsIdSlugRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

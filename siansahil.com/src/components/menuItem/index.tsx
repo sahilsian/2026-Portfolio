@@ -6,13 +6,14 @@ export interface MenuItemProps {
     displayName: string;
     slug: string;
     category: string;
+    lg?: boolean
 }
-const MenuItem = ({displayName, slug}:MenuItemProps) => {
+const MenuItem = ({displayName, slug, lg}:MenuItemProps) => {
 
     return (
         <div>
             <Link to={slug}>
-                <Typography level={"button"} value={displayName}>
+                <Typography underline={lg} level={lg ? "4" :"button"} value={displayName}>
                 </Typography>
             </Link>
         </div>
