@@ -1,0 +1,36 @@
+{
+  "kind": "singleType",
+  "collectionName": "styles",
+  "info": {
+    "singularName": "style",
+    "pluralName": "styles",
+    "displayName": "style"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "menuHex": {
+      "type": "string"
+    },
+    "wrapperHex": {
+      "type": "string"
+    },
+    "backgroundHex": {
+      "type": "string"
+    },
+    "primaryHex": {
+      "type": "string"
+    },
+    "secondaryHex": {
+      "type": "string"
+    },
+    "textPrimaryHex": {
+      "type": "string"
+    },
+    "textSecondaryHex": {
+      "type": "string"
+    }
+  }
+}
