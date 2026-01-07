@@ -25,21 +25,6 @@ export const MENU = gql`
     }
 `;
 
-export const ARTWORK_PAGE = gql`
-    ${VARIATION_FIELDS}
-    query ArtworkLayout {
-      artLayout {
-        collection {
-          id
-          variation {
-            ...VariationFields
-          }
-          title
-          description
-        }
-      }
-    }
-`
 
 export const CATEGORIES = gql`
     query Categories {
@@ -53,21 +38,6 @@ export const CATEGORIES = gql`
     }
 `
 
-export const SOFTWARE_PAGE = gql`
-    ${VARIATION_FIELDS}
-    query SoftwareLayout {
-      softwareLayout {
-        collection {
-          id
-          variation {
-            ...VariationFields
-          }
-          title
-          description
-        }
-      }
-    }
-`
 
 export const HOME_PAGE = gql`
     ${IMAGE_FIELDS}
@@ -190,46 +160,15 @@ export const PRODUCT_COLLECTION = gql`
     }
 `;
 
-export const ART_ITEM = gql`
+export const PRODUCT_ITEM = gql`
     ${IMAGE_FIELDS}
-    query Art($documentId: ID!) {
-          art(documentId: $documentId) {
+    query Product($documentId: ID!) {
+          product(documentId: $documentId) {
                 title
                 slug
-                image {
-                  ...ImageFields
+                category {
+                    name
                 }
-                description
-                tabs {
-                  title
-                  richDescription
-                }
-              }
-    }
-`
-
-export const SOFTWARE_COLLECTION = gql`
-    ${IMAGE_FIELDS}
-    
-    query Softwares {
-      softwares(sort: "order:asc") {
-        title
-        description
-        slug
-        documentId
-        image {
-          ...ImageFields
-        }
-      }
-    }   
-`;
-
-export const SOFTWARE_ITEM = gql`
-    ${IMAGE_FIELDS}
-    query Software($documentId: ID!) {
-          software(documentId: $documentId) {
-                title
-                slug
                 image {
                   ...ImageFields
                 }
