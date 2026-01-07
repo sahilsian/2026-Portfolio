@@ -7,8 +7,8 @@ interface MenuProviderProps {
 
 export interface MenuContextProps {
     isMobileMenu: boolean;
-    toggleMobileMenu: () => {},
-    closeMobileMenu: () => {}
+    toggleMobileMenu: () => void,
+    closeMobileMenu: () => void
 }
 
 

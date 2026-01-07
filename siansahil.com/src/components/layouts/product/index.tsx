@@ -1,5 +1,5 @@
 import {StrapiImage} from "@/components/image";
-import TabbedContent, {Tab} from "@/components/tabbedContent";
+import {Tab} from "@/components/tabbedContent";
 import Background from "@/components/layouts/product/background.tsx";
 import {Content} from "@/components/layouts/product/content.tsx";
 

@@ -430,66 +430,6 @@ export interface AdminUser extends Struct.CollectionTypeSchema {
   };
 }
 
-export interface ApiArtLayoutArtLayout extends Struct.SingleTypeSchema {
-  collectionName: 'art_layouts';
-  info: {
-    displayName: 'art_layout';
-    pluralName: 'art-layouts';
-    singularName: 'art-layout';
-  };
-  options: {
-    draftAndPublish: true;
-  };
-  attributes: {
-    collection: Schema.Attribute.Component<'layout.collection', false>;
-    createdAt: Schema.Attribute.DateTime;
-    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
-      Schema.Attribute.Private;
-    locale: Schema.Attribute.String & Schema.Attribute.Private;
-    localizations: Schema.Attribute.Relation<
-      'oneToMany',
-      'api::art-layout.art-layout'
-    > &
-      Schema.Attribute.Private;
-    publishedAt: Schema.Attribute.DateTime;
-    updatedAt: Schema.Attribute.DateTime;
-    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
-      Schema.Attribute.Private;
-  };
-}
-
-export interface ApiArtArt extends Struct.CollectionTypeSchema {
-  collectionName: 'arts';
-  info: {
-    displayName: 'art';
-    pluralName: 'arts';
-    singularName: 'art';
-  };
-  options: {
-    draftAndPublish: true;
-  };
-  attributes: {
-    createdAt: Schema.Attribute.DateTime;
-    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
-      Schema.Attribute.Private;
-    description: Schema.Attribute.Text;
-    image: Schema.Attribute.Media<'images' | 'files' | 'videos' | 'audios'>;
-    locale: Schema.Attribute.String & Schema.Attribute.Private;
-    localizations: Schema.Attribute.Relation<'oneToMany', 'api::art.art'> &
-      Schema.Attribute.Private;
-    order: Schema.Attribute.Integer &
-      Schema.Attribute.Required &
-      Schema.Attribute.Unique;
-    publishedAt: Schema.Attribute.DateTime;
-    slug: Schema.Attribute.UID;
-    tabs: Schema.Attribute.Component<'layout.tab', true>;
-    title: Schema.Attribute.String;
-    updatedAt: Schema.Attribute.DateTime;
-    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
-      Schema.Attribute.Private;
-  };
-}
-
 export interface ApiCategoryCategory extends Struct.CollectionTypeSchema {
   collectionName: 'categories';
   info: {
@@ -631,69 +571,6 @@ export interface ApiProductProduct extends Struct.CollectionTypeSchema {
     publishedAt: Schema.Attribute.DateTime;
     slug: Schema.Attribute.UID<'title'>;
     tabs: Schema.Attribute.Component<'layout.tab', true>;
-    title: Schema.Attribute.String;
-    updatedAt: Schema.Attribute.DateTime;
-    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
-      Schema.Attribute.Private;
-  };
-}
-
-export interface ApiSoftwareLayoutSoftwareLayout
-  extends Struct.SingleTypeSchema {
-  collectionName: 'software_layouts';
-  info: {
-    displayName: 'software_layout';
-    pluralName: 'software-layouts';
-    singularName: 'software-layout';
-  };
-  options: {
-    draftAndPublish: true;
-  };
-  attributes: {
-    collection: Schema.Attribute.Component<'layout.collection', false>;
-    createdAt: Schema.Attribute.DateTime;
-    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
-      Schema.Attribute.Private;
-    locale: Schema.Attribute.String & Schema.Attribute.Private;
-    localizations: Schema.Attribute.Relation<
-      'oneToMany',
-      'api::software-layout.software-layout'
-    > &
-      Schema.Attribute.Private;
-    publishedAt: Schema.Attribute.DateTime;
-    updatedAt: Schema.Attribute.DateTime;
-    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
-      Schema.Attribute.Private;
-  };
-}
-
-export interface ApiSoftwareSoftware extends Struct.CollectionTypeSchema {
-  collectionName: 'softwares';
-  info: {
-    displayName: 'software';
-    pluralName: 'softwares';
-    singularName: 'software';
-  };
-  options: {
-    draftAndPublish: true;
-  };
-  attributes: {
-    createdAt: Schema.Attribute.DateTime;
-    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
-      Schema.Attribute.Private;
-    description: Schema.Attribute.String;
-    image: Schema.Attribute.Media<'images' | 'files' | 'videos' | 'audios'>;
-    locale: Schema.Attribute.String & Schema.Attribute.Private;
-    localizations: Schema.Attribute.Relation<
-      'oneToMany',
-      'api::software.software'
-    > &
-      Schema.Attribute.Private;
-    order: Schema.Attribute.Integer &
-      Schema.Attribute.Required &
-      Schema.Attribute.Unique;
-    publishedAt: Schema.Attribute.DateTime;
-    slug: Schema.Attribute.String;
     title: Schema.Attribute.String;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
@@ -1211,15 +1088,11 @@ declare module '@strapi/strapi' {
       'admin::transfer-token': AdminTransferToken;
       'admin::transfer-token-permission': AdminTransferTokenPermission;
       'admin::user': AdminUser;
-      'api::art-layout.art-layout': ApiArtLayoutArtLayout;
-      'api::art.art': ApiArtArt;
       'api::category.category': ApiCategoryCategory;
       'api::footer.footer': ApiFooterFooter;
       'api::home.home': ApiHomeHome;
       'api::menu.menu': ApiMenuMenu;
       'api::product.product': ApiProductProduct;
-      'api::software-layout.software-layout': ApiSoftwareLayoutSoftwareLayout;
-      'api::software.software': ApiSoftwareSoftware;
       'plugin::content-releases.release': PluginContentReleasesRelease;
       'plugin::content-releases.release-action': PluginContentReleasesReleaseAction;
       'plugin::i18n.locale': PluginI18NLocale;
