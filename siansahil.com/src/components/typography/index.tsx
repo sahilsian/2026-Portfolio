@@ -1,5 +1,7 @@
 import { getFontStyles, type Font } from "./fonts";
 import {getRichFontStyles} from "@/components/typography/richFonts.ts";
+import {useStyles} from "@/hooks/useStyles.ts";
+import { useMemo } from "react";
 
 type Alignments = "left" | "center" | "right" | "justify";
 
@@ -10,7 +12,9 @@ interface TypographyProps {
     underline?: boolean;
     inactive?: boolean;
     markdown?: boolean;
-    highlighted?:boolean
+    highlighted?:boolean;
+    secondary?: boolean;
+    button?: boolean;
 }
 
 const Typography = ({
@@ -20,8 +24,12 @@ const Typography = ({
                         underline,
                         inactive,
                         markdown,
-                        highlighted
+                        highlighted,
+                        secondary,
+                        button
                     }: TypographyProps) => {
+
+    const styles = useStyles()
 
     const fontClasses = markdown ? getRichFontStyles(level) : getFontStyles(level);
 
@@ -31,9 +39,14 @@ const Typography = ({
         right: "text-right",
         justify: "text-justify",
     }[alignment];
+    console.log(styles.textButtonHex)
+    const className = useMemo(() =>
+            ` ${button && `text-[${styles.textButtonHex}]`} text-[${styles.textPrimaryHex}] ${highlighted ? `text-[${styles.secondaryHex}]` : ''} ${secondary ? `text-[${styles.textSecondaryHex}]` : ''} ${fontClasses} ${alignmentClasses} ${underline ? "underline" : ""} ${inactive ? "opacity-75" : ""}`,
+        [styles.textPrimaryHex, styles.secondaryHex, styles.textSecondaryHex, highlighted, secondary, fontClasses, alignmentClasses, underline, inactive]
+    );
 
     return (
-        <div className={`${highlighted && "text-[#b88a1f]"} ${fontClasses} ${alignmentClasses} ${underline && "underline"} ${inactive && "opacity-75"}`}>
+        <div className={className}>
             {value}
         </div>
     );

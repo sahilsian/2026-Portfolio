@@ -29,7 +29,7 @@ const Button = ({ button }: Props) => {
             <a href={route} target="_blank" rel="noopener noreferrer">
                 <button className={classes}>
                     {icon && <Icon size={icon.size} icon={icon.component} />}
-                    <Typography level="button" value={label} />
+                    <Typography button level="button" value={label} />
                 </button>
             </a>
         );
@@ -40,7 +40,7 @@ const Button = ({ button }: Props) => {
         <Link to={route || "/"}>
             <button className={classes}>
                 {icon && <Icon size={icon.size} icon={icon.component} />}
-                <Typography level="button" value={label} />
+                <Typography button level="button" value={label} />
             </button>
         </Link>
     );

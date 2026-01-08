@@ -53,6 +53,7 @@ export const STYLES = gql`
         textPrimaryHex
         textSecondaryHex
         wrapperHex
+        textButtonHex
       }
     }
 `

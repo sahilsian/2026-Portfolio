@@ -28,6 +28,7 @@ export const List = ({controlMachine, collection, pageInfo, categories}:ListProp
                 }
                 {collection.map((item) => {
                     return <PostWithRouter
+                        disabled={controlMachine.state.mode == "LOADING"}
                         key={item.slug}
                         slug={item.slug}
                         documentId={item.documentId}
@@ -35,6 +36,7 @@ export const List = ({controlMachine, collection, pageInfo, categories}:ListProp
                         clickable={true}
                         description={item.description}
                         image={item.image}
+                        category={item.category.name}
 
                     />
                 })}

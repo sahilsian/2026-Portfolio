@@ -1,16 +1,30 @@
 import Typography from "@/components/typography";
 import {ControlInterface} from "@/hooks/useControl.ts";
+import {useEffect, useState} from "react";
 
 interface ContentProps {
     title?: string;
     description?: string;
-    controlMachine: ControlInterface
+    controlMachine: ControlInterface,
+    categoryKey: string
 }
-export const Content = ({controlMachine, title, description}:ContentProps) => {
+export const Content = ({controlMachine, title, description, categoryKey}:ContentProps) => {
+    const [shouldAnimate, setShouldAnimate] = useState(false);
+
+    useEffect(() => {
+        setShouldAnimate(false);
+
+        const timer = requestAnimationFrame(() => {
+            setShouldAnimate(true);
+        });
+
+        return () => cancelAnimationFrame(timer);
+    }, [categoryKey]);
+
     return (
         <div className={ `py-22 pb-6`}>
             <div className={'flex items-center gap-3'}>
-                <div className={"typewriter-title  animate-typewriter-fast"}>
+                <div key={`title-${categoryKey}-${title}`} className={` typewriter-title   ${shouldAnimate ? 'animate-typewriter-fast' : ''}`}>
                     <Typography level={"2"} value={title}></Typography>
                 </div>
 
@@ -23,7 +37,7 @@ export const Content = ({controlMachine, title, description}:ContentProps) => {
 
                 }
             </div>
-            <div className={"typewriter-description  animate-typewriter-fast"}>
+            <div key={`desc-${categoryKey}-${description}`} className={`typewriter-description   ${shouldAnimate ? 'animate-typewriter-fast' : ''} `}>
                 <Typography level={"p"} value={description}></Typography>
             </div>
         </div>

@@ -67,6 +67,8 @@ export const Control = ({ controlMachine, pageCount, total=0, children, categori
             to: ".",
             search: (prev:any) => ({
                 ...prev,
+                // reset page
+                page: 1,
                 title: controlMachine.state.search
             })
         })
@@ -78,6 +80,8 @@ export const Control = ({ controlMachine, pageCount, total=0, children, categori
             to: ".",
             search: (prev:any) => ({
                 ...prev,
+                // reset page
+                page: 1,
                 category: newCategory
             })
         })
@@ -129,7 +133,7 @@ export const Control = ({ controlMachine, pageCount, total=0, children, categori
             }
 
             <div>
-
+                <Pagination page={currentPage} pageCount={pageCount} pageSize={currentPageSize} total={total}></Pagination>
             </div>
         </div>
     )

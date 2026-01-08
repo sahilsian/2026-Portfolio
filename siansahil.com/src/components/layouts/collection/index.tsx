@@ -16,15 +16,16 @@ const Collection = ({collection, pageInfo, type, categories}:CollectionProps) =>
     const controlMachine = useControl()
     const search = useSearch({ strict: false })
 
+    const currentCategory = search.category || 'all'
+
     const { layoutTitle, layoutDescription } = categories.find((category) =>
-        category.category.name == (search.category || controlMachine.state.category)
+        category.category.name === currentCategory
     ) || {}
 
-
     return (
-        <div key={search.category || "all"} className={`Collection ${type} lg:px-22 px-6 bg-[#EDEDED] relative`}>
+        <div className={`Collection ${type} lg:px-22 px-6 bg-[#EDEDED] relative`}>
             <Background></Background>
-            <Content controlMachine={controlMachine} title={layoutTitle} description={layoutDescription}></Content>
+            <Content categoryKey={currentCategory} controlMachine={controlMachine} title={layoutTitle} description={layoutDescription}></Content>
             <List categories={categories} controlMachine={controlMachine} pageInfo={pageInfo} collection={collection}></List>
         </div>
     )

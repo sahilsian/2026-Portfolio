@@ -10,10 +10,12 @@ interface PostProps {
     slug: string;
     clickable: boolean;
     documentId: string;
+    disabled?: boolean
+    category: string
 }
 
 const Post =
-    ({ clickable, slug, documentId, title, description, image, goToPost}: PostProps & RouterInjectedProps
+    ({ disabled, clickable, slug, documentId, title, description, image, goToPost, category}: PostProps & RouterInjectedProps
     ) => {
     const handleClick = () => {
         if (clickable) {
@@ -28,13 +30,20 @@ const Post =
                 max-w-[500px] flex-1 
                  border-1 border-[#000000]
                  hover:bg-[#ffffff]
+                 transition-all
+                 ${disabled && "bg-[#E3E3E3] text-gray-500"}
                  rounded-4xl transition-all p-6 lg:min-w-[380px]  min-w-[340px] mb-6 ${
                 clickable ? "cursor-pointer" : ""
             }`}
         >
             <Image image={image} className={'rounded-2xl w-full aspect-square object-cover object-top'} />
             <Spacer height={"20px"} />
-            <Typography underline level={"3"} value={title} />
+            <div className={'flex items-center justify-between'}>
+                <div className={'flex-1 '}>
+                    <Typography underline level={"3"} value={title} />
+                </div>
+                <Typography secondary level={"6"} value={category} />
+            </div>
             <Typography level={"p"} value={description} />
         </div>
     );

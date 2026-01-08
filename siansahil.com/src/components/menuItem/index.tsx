@@ -12,7 +12,11 @@ const MenuItem = ({displayName, slug, lg}:MenuItemProps) => {
 
     return (
         <div>
-            <Link to={slug}>
+            <Link
+                to={slug}
+                search={{}}
+                params={{}}
+            >
                 <Typography underline={lg} level={lg ? "4" :"button"} value={displayName}>
                 </Typography>
             </Link>

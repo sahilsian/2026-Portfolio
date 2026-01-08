@@ -9,6 +9,7 @@ export interface StylesContextProps {
     secondaryHex?: string;
     textPrimaryHex?: string;
     textSecondaryHex?: string;
+    textButtonHex?: string;
 }
 
 
@@ -26,7 +27,8 @@ export const StylesProvider = ({children, colors}: StylesProviderProps) => {
             colors.primaryHex,
             colors.secondaryHex,
             colors.textPrimaryHex,
-            colors.textSecondaryHex
+            colors.textSecondaryHex,
+            colors.textButtonHex
         ]
     )
 
