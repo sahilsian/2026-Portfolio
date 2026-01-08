@@ -15,6 +15,11 @@
       "type": "component",
       "component": "layout.wrapper",
       "repeatable": false
+    },
+    "seo": {
+      "type": "component",
+      "component": "seo.seo",
+      "repeatable": false
     }
   }
 }

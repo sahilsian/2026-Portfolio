@@ -454,6 +454,7 @@ export interface ApiCategoryCategory extends Struct.CollectionTypeSchema {
     > &
       Schema.Attribute.Private;
     publishedAt: Schema.Attribute.DateTime;
+    seo: Schema.Attribute.Component<'seo.seo', false>;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
@@ -538,6 +539,7 @@ export interface ApiHomeHome extends Struct.SingleTypeSchema {
     localizations: Schema.Attribute.Relation<'oneToMany', 'api::home.home'> &
       Schema.Attribute.Private;
     publishedAt: Schema.Attribute.DateTime;
+    seo: Schema.Attribute.Component<'seo.seo', false>;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
@@ -602,6 +604,42 @@ export interface ApiProductProduct extends Struct.CollectionTypeSchema {
     slug: Schema.Attribute.UID<'title'>;
     tabs: Schema.Attribute.Component<'layout.tab', true>;
     title: Schema.Attribute.String;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
+export interface ApiRootSeoRootSeo extends Struct.SingleTypeSchema {
+  collectionName: 'root_seos';
+  info: {
+    displayName: 'rootSEO';
+    pluralName: 'root-seos';
+    singularName: 'root-seo';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    canonicalDomain: Schema.Attribute.String;
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::root-seo.root-seo'
+    > &
+      Schema.Attribute.Private;
+    publishedAt: Schema.Attribute.DateTime;
+    robots: Schema.Attribute.Enumeration<['index,follow', 'noindex,nofollow']>;
+    siteDescription: Schema.Attribute.String;
+    siteKeywords: Schema.Attribute.Text;
+    siteName: Schema.Attribute.String;
+    siteOGImage: Schema.Attribute.Media<
+      'images' | 'files' | 'videos' | 'audios'
+    >;
+    siteTitle: Schema.Attribute.String;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
@@ -1155,6 +1193,7 @@ declare module '@strapi/strapi' {
       'api::home.home': ApiHomeHome;
       'api::menu.menu': ApiMenuMenu;
       'api::product.product': ApiProductProduct;
+      'api::root-seo.root-seo': ApiRootSeoRootSeo;
       'api::style.style': ApiStyleStyle;
       'plugin::content-releases.release': PluginContentReleasesRelease;
       'plugin::content-releases.release-action': PluginContentReleasesReleaseAction;

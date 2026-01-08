@@ -21,6 +21,11 @@
       "type": "component",
       "component": "control.category",
       "repeatable": false
+    },
+    "seo": {
+      "type": "component",
+      "component": "seo.seo",
+      "repeatable": false
     }
   }
 }

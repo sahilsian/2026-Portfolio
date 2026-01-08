@@ -155,6 +155,22 @@ export interface LayoutWrapper extends Struct.ComponentSchema {
   };
 }
 
+export interface SeoSeo extends Struct.ComponentSchema {
+  collectionName: 'components_seo_seos';
+  info: {
+    displayName: 'seo';
+    icon: 'bell';
+  };
+  attributes: {
+    canonical: Schema.Attribute.String;
+    description: Schema.Attribute.String;
+    keywords: Schema.Attribute.String;
+    OGImage: Schema.Attribute.Media<'images' | 'files' | 'videos' | 'audios'>;
+    robots: Schema.Attribute.Enumeration<['index,follow', 'noindex,nofollow']>;
+    title: Schema.Attribute.String;
+  };
+}
+
 declare module '@strapi/strapi' {
   export module Public {
     export interface ComponentSchemas {
@@ -168,6 +184,7 @@ declare module '@strapi/strapi' {
       'layout.statement': LayoutStatement;
       'layout.tab': LayoutTab;
       'layout.wrapper': LayoutWrapper;
+      'seo.seo': SeoSeo;
     }
   }
 }
