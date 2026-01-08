@@ -8,3 +8,29 @@
         -moz-osx-font-smoothing: grayscale;
     }
 }
+
+@keyframes typewriter {
+    from {
+        width: 0;
+        opacity: 0;
+    }
+    to {
+        width: 100%;
+        opacity: 1;
+    }
+}
+
+.typewriter-title {
+    overflow: hidden;
+    white-space: nowrap;
+    animation: typewriter 0.8s steps(40, end) forwards;
+    width: 0;
+}
+
+.typewriter-description {
+    overflow: hidden;
+    white-space: nowrap;
+    animation: typewriter 1.2s steps(60, end) 0.3s forwards;
+    width: 0;
+    opacity: 0;
+}

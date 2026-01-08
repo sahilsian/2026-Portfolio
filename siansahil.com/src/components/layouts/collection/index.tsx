@@ -4,6 +4,7 @@ import {Background} from "@/components/layouts/collection/background.tsx";
 import {PageInfoProps} from "@/components/pagination";
 import {useControl} from "@/hooks/useControl.ts";
 import {CollectionCategory} from "@/components/renderers/collectionRenderer";
+import {useSearch} from "@tanstack/react-router";
 
 interface CollectionProps {
     collection: any[];
@@ -13,13 +14,15 @@ interface CollectionProps {
 }
 const Collection = ({collection, pageInfo, type, categories}:CollectionProps) => {
     const controlMachine = useControl()
+    const search = useSearch({ strict: false })
 
     const { layoutTitle, layoutDescription } = categories.find((category) =>
-        category.category.name == controlMachine.state.category
+        category.category.name == (search.category || controlMachine.state.category)
     ) || {}
 
+
     return (
-        <div className={`Collection ${type} lg:px-22 px-6 bg-[#EDEDED] relative`}>
+        <div key={search.category || "all"} className={`Collection ${type} lg:px-22 px-6 bg-[#EDEDED] relative`}>
             <Background></Background>
             <Content controlMachine={controlMachine} title={layoutTitle} description={layoutDescription}></Content>
             <List categories={categories} controlMachine={controlMachine} pageInfo={pageInfo} collection={collection}></List>

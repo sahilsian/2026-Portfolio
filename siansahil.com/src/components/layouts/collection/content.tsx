@@ -10,7 +10,10 @@ export const Content = ({controlMachine, title, description}:ContentProps) => {
     return (
         <div className={ `py-22 pb-6`}>
             <div className={'flex items-center gap-3'}>
-                <Typography level={"2"} value={title}></Typography>
+                <div className={"typewriter-title  animate-typewriter-fast"}>
+                    <Typography level={"2"} value={title}></Typography>
+                </div>
+
                 {controlMachine.state.mode == 'LOADING' &&
                     <div className="flex items-center justify-center mb-5">
                         <div
@@ -20,7 +23,9 @@ export const Content = ({controlMachine, title, description}:ContentProps) => {
 
                 }
             </div>
-            <Typography level={"p"} value={description}></Typography>
+            <div className={"typewriter-description  animate-typewriter-fast"}>
+                <Typography level={"p"} value={description}></Typography>
+            </div>
         </div>
     )
 }
