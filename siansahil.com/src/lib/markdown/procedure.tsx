@@ -1,42 +1,47 @@
 import React from "react";
-import Typography from "@/components/typography";
-import {Font} from "@/components/typography/fonts.ts";
+import { Font } from "@/components/typography/fonts.ts";
+import { InlineToken } from "./tokenizer";
+import { MarkdownTypography } from "@/components/markdownTypography";
+
+const HEADING_FONT_MAP: Record<number, Font> = {
+    1: "1",
+    2: "2",
+    3: "3",
+    4: "4",
+    5: "5",
+    6: "6",
+};
 
 export class Procedure {
-    static HEADING = (level: number, content: string): React.ReactNode => {
-        const fontMap: Record<number,Font> = {
-            1: "1",
-            2: "2",
-            3: "3",
-            4: "4",
-            5: "5",
-            6: "6",
-        };
-
-        return (
-            <Typography
-                key={content}
-                level={fontMap[level] || "p"}
-                value={content}
-            >
-            </Typography>
+    static HEADING = (level: number, inlineTokens?: InlineToken[]): React.ReactNode => (
+        <MarkdownTypography
+            level={HEADING_FONT_MAP[level] || "p"}
+            inlineTokens={inlineTokens}
+        />
     );
-    };
 
-    static PARAGRAPH = (content: string): React.ReactNode => {
-        return <Typography
-            key={content}
-            level={"p"}
-            value={content}
-        >
-        </Typography>;
-    };
+    static PARAGRAPH = (inlineTokens?: InlineToken[]): React.ReactNode => (
+        <MarkdownTypography
+            level="p"
+            inlineTokens={inlineTokens}
+        />
+    );
 
-    static LIST_ORDERED = (content: string): React.ReactNode => {
-        return <li><Typography level="p" value={content}></Typography></li>;
-    };
+    static LIST_ORDERED = (inlineTokens?: InlineToken[]): React.ReactNode => (
+        <li>
+            <MarkdownTypography
+                level="p"
+                inlineTokens={inlineTokens}
+            />
+        </li>
+    );
 
-    static LIST_UNORDERED = (content: string): React.ReactNode => {
-        return <li><Typography level="p" value={content}></Typography></li>;
-    };
+    static LIST_UNORDERED = (inlineTokens?: InlineToken[]): React.ReactNode => (
+        <li>
+            <MarkdownTypography
+                level="p"
+                inlineTokens={inlineTokens}
+            />
+        </li>
+    );
 }

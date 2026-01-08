@@ -1,6 +1,7 @@
 import { createFileRoute } from '@tanstack/react-router';
 import { queryHome } from "@/lib/graphQL/gqlClient.ts";
 import BlockRenderer from "@/components/renderers/blockRenderer";
+import {pageSEO} from "@/components/seo/interfaces.ts";
 
 export const Route = createFileRoute('/')(
     {
@@ -10,9 +11,9 @@ export const Route = createFileRoute('/')(
                     queryKey: ['home'],
                     queryFn: queryHome
                 })
-
                 return {
-                    home: home.home
+                    home: home.home,
+                    seo: home.home.seo
                 }
             } catch (error) {
                 console.error(error)
@@ -21,6 +22,32 @@ export const Route = createFileRoute('/')(
                 }
             }
 
+        },
+        head: ({ loaderData }) => {
+            console.log(loaderData)
+            const seo: pageSEO = loaderData?.seo ?? {
+                title: 'Fluentclicks.com',
+                description: 'Fluentclicks uses AI to generate leads that speak fluently to your business processes.',
+                canonical: 'siansahil.com',
+                OGImage: { url: '' },
+            }
+
+            return {
+
+                meta: [
+                    { title: seo.title },
+                    { name: "description", content: seo.description},
+                    // OPEN GRAPH
+                    { property: 'og:title', content: seo.title },
+                    { property: 'og:description', content: seo.description },
+                    { property: 'og:image', content: seo.OGImage?.url || "" },
+                    { property: 'og:type', content: "website" }
+                ],
+                links: [
+
+                    { rel: 'canonical', href: seo.canonical }
+                ],
+            }
         },
         component: HomePage
     }

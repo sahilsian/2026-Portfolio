@@ -10,7 +10,7 @@ import {
     NO_LIMIT,
     PRODUCT_COLLECTION,
     CATEGORIES,
-    PRODUCT_ITEM,
+    PRODUCT_ITEM, STYLES, ROOT_SEO,
 } from "@/lib/graphQL/queries.ts";
 
 // Helper to get the GraphQL client (server-side only)
@@ -22,6 +22,18 @@ const getGqlClient = () => {
 export const getStrapiRoot = createServerFn({ method: "GET" }).handler(() => {
     return env.VITE_STRAPI_ROOT;
 });
+
+// Styles
+export const queryStyles = createServerFn({ method: "GET" }).handler(() => {
+    const client = getGqlClient();
+    return client.request(STYLES)
+})
+
+// SEO
+export const queryRootSEO = createServerFn({ method: "GET" }).handler(() => {
+    const client = getGqlClient();
+    return client.request(ROOT_SEO)
+})
 
 // Pages
 export const queryHome = createServerFn({ method: "GET" }).handler(() => {
@@ -84,3 +96,4 @@ export const queryProduct = createServerFn()
         const client = getGqlClient();
         return client.request(PRODUCT_ITEM, {documentId: data.documentId})
     })
+

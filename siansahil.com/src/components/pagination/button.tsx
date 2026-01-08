@@ -9,7 +9,7 @@ interface PaginationButton {
 export const PaginationButton = ({pageSize, idx, selectedPage}:PaginationButton) => {
 
     return (
-        <Link to={'.'} search={{ page: idx, pageSize: pageSize }}>
+        <Link to={'.'} search={(search) => ({ ...search, page: idx, pageSize: pageSize })}>
             <div className={"hover:opacity-70 cursor-pointer"}>
                 <Typography highlighted={idx == selectedPage} underline level={"6"} value={idx.toString()}></Typography>
             </div>

@@ -16,24 +16,24 @@ export const GLOBAL_RENDER_ENVIRONMENT: ReadonlyMap<String, RenderProcedure> =
     new Map([
         [TokenType.HEADING, (token, ctx) =>
             ctx.htmlParts.push(
-                Procedure.HEADING(token.text_level!, token.value)
+                Procedure.HEADING(token.text_level!, token.inline_tokens)
             )
         ],
         [TokenType.PARAGRAPH, (token, ctx) =>
             ctx.htmlParts.push(
-                Procedure.PARAGRAPH(token.value)
+                Procedure.PARAGRAPH(token.inline_tokens)
             )
         ],
         [TokenType.LIST_UNORDERED, (token, ctx) =>
             ctx.ulItems.push(
-                Procedure.LIST_UNORDERED(token.value)
+                Procedure.LIST_UNORDERED(token.inline_tokens)
             )
         ],
         [TokenType.LIST_ORDERED, (token, ctx) =>
             ctx.olItems.push(
-                Procedure.LIST_ORDERED(token.value)
+                Procedure.LIST_ORDERED(token.inline_tokens)
             )
-        ],
+        ]
     ]);
 
 export class Markdown {

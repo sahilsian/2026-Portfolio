@@ -6,11 +6,5 @@
         font-family: 'Inria Serif', serif;
         -webkit-font-smoothing: antialiased;
         -moz-osx-font-smoothing: grayscale;
-
-        --main-bg-color: #EDEDED;
-        --main-button-primary: #9CC2A3;
-        --main-button-secondary: #C2D6EE;
-
-        color: #191515;
     }
 }

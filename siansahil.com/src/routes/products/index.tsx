@@ -2,6 +2,7 @@ import {createFileRoute} from '@tanstack/react-router'
 import {queryCategories, queryProductCollection} from "@/lib/graphQL/gqlClient.ts";
 import CollectionRenderer from "@/components/renderers/collectionRenderer";
 import {STANDARD_PAGINATION} from "@/lib/graphQL/queries.ts";
+import {pageSEO} from "@/components/seo/interfaces.ts";
 
 export const Route = createFileRoute('/products/')({
     validateSearch: (search: Record<string, unknown>) => {
@@ -49,11 +50,41 @@ export const Route = createFileRoute('/products/')({
             queryKey: ["products", page, pageSize, title, categoryFilter],
         })
 
-        console.log("Fetched products:", products.products_connection.nodes);
-        console.log("Filter used:", filters);
+        const selectedCategory =
+            categories.categories.find(
+                (obj: any) =>
+                    category && obj.category.name === category
+            ) ??
+            categories.categories.find(
+                (obj: any) => obj.category.name === 'all'
+            )
 
-        return {products: products.products_connection, categories: categories.categories}
-    }
+        return {products: products.products_connection, categories: categories.categories, selectedCategory: selectedCategory}
+    },
+    head: ({ loaderData }) => {
+        const seo:pageSEO = loaderData?.selectedCategory.seo ?? {
+            title: 'Fluentclicks.com',
+            description: 'Fluentclicks uses AI to generate leads that speak fluently to your business processes.',
+            canonical: 'siansahil.com',
+            OGImage: { url: '' },
+        }
+
+        return {
+            meta: [
+                { title: seo.title },
+                { name: "description", content: seo.description},
+                // OPEN GRAPH
+                { property: 'og:title', content: seo.title },
+                { property: 'og:description', content: seo.description },
+                { property: 'og:image', content: seo.OGImage?.url || "" },
+                { property: 'og:type', content: "website" }
+            ],
+            links: [
+
+                { rel: 'canonical', href: seo.canonical }
+            ],
+        }
+    },
 })
 
 function RouteComponent() {

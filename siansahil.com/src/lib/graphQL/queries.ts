@@ -1,5 +1,5 @@
 import {gql} from "@apollo/client";
-import {BUTTON_FIELDS, IMAGE_FIELDS, VARIATION_FIELDS} from "@/lib/graphQL/fragments.ts";
+import {BUTTON_FIELDS, IMAGE_FIELDS, SEO_FIELDS, VARIATION_FIELDS} from "@/lib/graphQL/fragments.ts";
 
 export const NO_LIMIT = { pagination: { limit: 100, start: 0 } };
 
@@ -27,6 +27,7 @@ export const MENU = gql`
 
 
 export const CATEGORIES = gql`
+    ${SEO_FIELDS}
     query Categories {
       categories {
         category {
@@ -34,6 +35,24 @@ export const CATEGORIES = gql`
         }
         layoutTitle
         layoutDescription
+        seo {
+          ...SeoFields
+        }
+      }
+      
+    }
+`
+
+export const STYLES = gql`
+    query Style {
+      style {
+        backgroundHex
+        menuHex
+        primaryHex
+        secondaryHex
+        textPrimaryHex
+        textSecondaryHex
+        wrapperHex
       }
     }
 `
@@ -43,7 +62,7 @@ export const HOME_PAGE = gql`
     ${IMAGE_FIELDS}
     ${BUTTON_FIELDS}
     ${VARIATION_FIELDS}
-    
+    ${SEO_FIELDS}
     query Home {
       home {
         documentId
@@ -113,6 +132,9 @@ export const HOME_PAGE = gql`
               }
             }
         }
+        seo {
+          ...SeoFields
+        }
       }
     }
 `
@@ -181,3 +203,19 @@ export const PRODUCT_ITEM = gql`
     }
 `
 
+export const ROOT_SEO = gql`
+    ${IMAGE_FIELDS}
+    query RootSeo {
+      rootSeo {
+        robots
+        siteDescription
+        siteKeywords
+        siteName
+        siteTitle
+        siteOGImage {
+            ...ImageFields
+        }
+        canonicalDomain
+      }
+    }
+`

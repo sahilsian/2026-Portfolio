@@ -9,7 +9,7 @@ interface TypographyProps {
     alignment?: Alignments;
     underline?: boolean;
     inactive?: boolean;
-    rich?: boolean;
+    markdown?: boolean;
     highlighted?:boolean
 }
 
@@ -19,11 +19,11 @@ const Typography = ({
                         alignment = "left",
                         underline,
                         inactive,
-                        rich,
+                        markdown,
                         highlighted
                     }: TypographyProps) => {
 
-    const fontClasses = rich ? getRichFontStyles(level) : getFontStyles(level);
+    const fontClasses = markdown ? getRichFontStyles(level) : getFontStyles(level);
 
     const alignmentClasses = {
         left: "text-left",

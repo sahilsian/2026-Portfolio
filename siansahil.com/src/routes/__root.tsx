@@ -4,17 +4,16 @@ import {
 } from '@tanstack/react-router'
 
 import appCss from '../styles.css?url'
-// @ts-ignore
-// import '@fontsource/inria-serif'
 import type {QueryClient} from "@tanstack/react-query";
 import type {TRPCOptionsProxy} from "@trpc/tanstack-react-query";
 import type {TRPCRouter} from "@/integrations/trpc/router.ts";
-import {getStrapiRoot, queryFooter, queryMenu} from "@/lib/graphQL/gqlClient.ts";
+import {getStrapiRoot, queryFooter, queryMenu, queryRootSEO, queryStyles} from "@/lib/graphQL/gqlClient.ts";
 import Menu from "@/components/menu";
 import Footer from "@/components/footer";
 import {StrapiProvider} from "@/contexts/strapi/strapiProvider.tsx";
 import {MenuProvider} from "@/contexts/menu/menuProvider.tsx";
-
+import {StylesContextProps, StylesProvider} from "@/contexts/styles/stylesProvider.tsx";
+import {rootSEO} from "@/components/seo/interfaces.ts";
 
 interface MyRouterContext {
     queryClient: QueryClient
@@ -22,31 +21,27 @@ interface MyRouterContext {
 }
 
 export const Route = createRootRouteWithContext<MyRouterContext>()({
-    head: () => ({
-    meta: [
-      {
-        charSet: 'utf-8',
-      },
-      {
-        name: 'viewport',
-        content: 'width=device-width, initial-scale=1',
-      },
-      {
-        title: 'TanStack Start Starter',
-      },
-    ],
-    links: [
-      {
-        rel: 'stylesheet',
-        href: appCss,
-      },
-    ],
-  }),
-    loader: async ({context}) => {
+
+    beforeLoad: async ({ context }) => {
+
+        const rootSEO = await context.queryClient.ensureQueryData({
+            queryKey: ['seo', 'root'],
+            queryFn: queryRootSEO
+        });
+
+
         const strapiRoot = await context.queryClient.ensureQueryData({
             queryKey: ['strapiRoot'],
             queryFn: getStrapiRoot
         })
+
+        const stylesData = await context.queryClient.ensureQueryData({
+            queryKey: ['styles'],
+            queryFn: queryStyles
+        })
+
+        const styles:StylesContextProps = stylesData.style;
+
         const menu = await context.queryClient.ensureQueryData({
             queryKey: ['menu'],
             queryFn: queryMenu
@@ -55,28 +50,86 @@ export const Route = createRootRouteWithContext<MyRouterContext>()({
             queryKey: ['footer'],
             queryFn: queryFooter
         })
-        return { menu: menu.menu, footer: footer.footer, strapiRoot: strapiRoot }
+
+        return {
+            rootSEO: rootSEO.rootSeo,
+            styles: styles,
+            menu: menu.menu,
+            footer: footer.footer,
+            strapiRoot
+        };
+
+    },
+    loader: async ({context}) => {
+        return {
+            rootSEO: context.rootSEO,
+            styles: context.styles,
+            menu: context.menu,
+            footer: context.footer,
+            strapiRoot: context.strapiRoot
+        }
+    },
+    head: ({ loaderData }) => {
+        const rootSEO: rootSEO = loaderData?.rootSEO ?? {
+            siteTitle: 'Fluentclicks.com',
+            siteDescription: 'Fluentclicks uses AI to generate leads that speak fluently to your business processes.',
+            canonicalDomain: 'siansahil.com',
+            siteOGImage: { url: '' },
+        }
+
+        return {
+
+            meta: [
+                { charSet: 'utf-8' },
+                { name: 'viewport', content: 'width=device-width, initial-scale=1' },
+                { title: rootSEO.siteTitle },
+                { name: "description", content: rootSEO.siteDescription},
+                // OPEN GRAPH
+                { property: 'og:title', content: rootSEO.siteTitle },
+                { property: 'og:description', content: rootSEO.siteDescription },
+                { property: 'og:image', content: rootSEO.siteOGImage.url },
+                { property: 'og:type', content: "website" }
+            ],
+            links: [
+                {
+                    rel: 'stylesheet',
+                    href: appCss,
+                },
+                { rel: 'canonical', href: rootSEO.canonicalDomain }
+            ],
+        }
     },
     shellComponent: RootDocument,
 })
 
 function RootDocument({ children }: { children: React.ReactNode }) {
-    const { menu, footer, strapiRoot } = Route.useLoaderData();
-  return (
-    <html lang="en">
-      <head>
-        <HeadContent />
-      </head>
-      <body>
-        <StrapiProvider rootStrapiURL={strapiRoot}>
-            <MenuProvider>
-                <Menu title={menu.title} menuItems={menu.mainMenuItems}></Menu>
-                    {children}
-                <Footer title={footer.title} description={footer.description} menuItems={footer.footerMenuItems}></Footer>
-            </MenuProvider>
-        </StrapiProvider>
-      </body>
-      <Scripts />
-    </html>
+
+    const { styles, menu, footer, strapiRoot } = Route.useLoaderData();
+    return (
+        <html lang="en">
+          <head>
+            <HeadContent />
+              {/*Critical CSS from server*/}
+              <style>{`
+                body {
+                    background-color: ${styles.backgroundHex};
+                }
+              `}</style>
+          </head>
+
+          <StylesProvider colors={styles}>
+              <body>
+                <StrapiProvider rootStrapiURL={strapiRoot}>
+                    <MenuProvider>
+                        <Menu backgroundColor={styles.menuHex} title={menu.title} menuItems={menu.mainMenuItems}></Menu>
+                            {children}
+                        <Footer backgroundColor={styles.menuHex} title={footer.title} description={footer.description} menuItems={footer.footerMenuItems}></Footer>
+                    </MenuProvider>
+                </StrapiProvider>
+              </body>
+          </StylesProvider>
+
+          <Scripts />
+        </html>
   )
 }

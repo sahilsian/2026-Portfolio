@@ -16,7 +16,7 @@ const SearchInput = ({disabled, showClear, onEnter, onSearch, onClear, handleCha
 
     return (
         <div className={'flex items-center gap-3'}>
-            <TextInput disabled={disabled} onEnter={onEnter} placeholder={"Bridgewater, Nova Scotia"} handleChange={handleChange} value={value}></TextInput>
+            <TextInput disabled={disabled} onEnter={onEnter} placeholder={"Search..."} handleChange={handleChange} value={value}></TextInput>
             <ControlButton onClick={onSearch}>
                 <Typography value={'Search'} level={'button'}>
                 </Typography>

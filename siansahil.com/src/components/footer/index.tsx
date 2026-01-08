@@ -2,6 +2,7 @@ import MenuItem, {MenuItemProps} from "@/components/menuItem";
 import Screen from "@/components/screen"
 import Typography from "@/components/typography";
 interface FooterProps {
+    backgroundColor?: string,
     menuItems?: MenuItemProps[],
     title: string,
     description: string
@@ -12,7 +13,7 @@ interface CategoryGroup {
     items: MenuItemProps[];
 }
 
-const Footer = ( {menuItems, title, description}:FooterProps) => {
+const Footer = ( {backgroundColor, menuItems, title, description}:FooterProps) => {
 
     if (!menuItems) return null
 
@@ -32,7 +33,7 @@ const Footer = ( {menuItems, title, description}:FooterProps) => {
     const groupedMenu = menuItems.reduce<CategoryGroup[]>(sortByCategory, [])
 
     return (
-        <Screen>
+        <Screen backgroundColor={backgroundColor}>
             <footer className={"flex  px-6 lg:px-22 py-12 gap-20 flex-wrap"}>
                 <div className={"flex-1 min-w-[300px] "}>
                     <Typography level={"2"} value={title}></Typography>

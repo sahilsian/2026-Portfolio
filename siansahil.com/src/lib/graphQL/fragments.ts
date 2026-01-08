@@ -8,6 +8,20 @@ export const IMAGE_FIELDS = gql`
   }
 `;
 
+export const SEO_FIELDS = gql`
+    ${IMAGE_FIELDS}
+    fragment SeoFields on ComponentSeoSeo {
+          canonical
+          description
+          keywords
+          robots
+          title
+          OGImage {
+            ...ImageFields
+          }
+    }
+`
+
 export const BUTTON_FIELDS = gql`
     fragment ButtonFields on ComponentControlButton {
         variant
