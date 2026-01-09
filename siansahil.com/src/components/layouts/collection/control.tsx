@@ -5,9 +5,10 @@ import Pagination from "@/components/pagination";
 import {useNavigate, useRouterState, useSearch} from "@tanstack/react-router";
 import {STANDARD_PAGINATION} from "@/lib/graphQL/queries.ts";
 import SearchInput from "@/components/searchInput";
-import {ControlInterface} from "@/hooks/useControl.ts";
+import {ControlInterface, Views} from "@/hooks/useControl.ts";
 import CategoryInput from "@/components/categoryInput";
 import {CollectionCategory} from "@/components/renderers/collectionRenderer";
+import CustomizeViewport from "@/components/customizeViewport";
 
 interface ControlProps extends PropsWithChildren {
     controlMachine: ControlInterface
@@ -27,7 +28,6 @@ export const Control = ({ controlMachine, pageCount, total=0, children, categori
     const categoryOptions = categories.map((category) => {
         return { name: category.category.name }
     })
-
 
     // Loading effects
     useEffect(() => {
@@ -87,6 +87,18 @@ export const Control = ({ controlMachine, pageCount, total=0, children, categori
         })
     }
 
+    const handleChangeView = async(view:Views) => {
+        controlMachine.changeView(view)
+        console.log(view)
+        await navigate({
+            to: ".",
+            search: (prev:any) => ({
+                ...prev,
+                view: view
+            })
+        })
+    }
+
     return (
         <div className={'relative z-10 '}>
             <div className={'sm:flex sm:justify-between mb-2'}>
@@ -109,8 +121,17 @@ export const Control = ({ controlMachine, pageCount, total=0, children, categori
                     </div>
                 </div>
 
-                <div>
-                    <div className={"max-w-[100px] ml-auto"}>
+                <div className={'flex w-full items-center flex-row-reverse justify-start gap-4 lg:gap-8'}>
+                    <div>
+                        <CustomizeViewport
+                            controlMachine={controlMachine}
+                            onClick={(view:Views) => handleChangeView(view)}
+                        >
+
+                        </CustomizeViewport>
+                    </div>
+
+                    <div className={"max-w-[100px] "}>
                         <CategoryInput
                             value={controlMachine.state.category || ''}
                             handleChange={(e:any) => handleCategoryChange(e)}

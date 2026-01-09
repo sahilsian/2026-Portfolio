@@ -54,6 +54,7 @@ export const STYLES = gql`
         textSecondaryHex
         wrapperHex
         textButtonHex
+        iconActiveHex   
       }
     }
 `

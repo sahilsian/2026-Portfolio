@@ -461,7 +461,7 @@ export interface ApiCategoryCategory extends Struct.CollectionTypeSchema {
   };
 }
 
-export interface ApiContactContact extends Struct.SingleTypeSchema {
+export interface ApiContactContact extends Struct.CollectionTypeSchema {
   collectionName: 'contacts';
   info: {
     displayName: 'contact';
@@ -661,6 +661,7 @@ export interface ApiStyleStyle extends Struct.SingleTypeSchema {
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
+    iconActiveHex: Schema.Attribute.String;
     locale: Schema.Attribute.String & Schema.Attribute.Private;
     localizations: Schema.Attribute.Relation<'oneToMany', 'api::style.style'> &
       Schema.Attribute.Private;
@@ -668,6 +669,7 @@ export interface ApiStyleStyle extends Struct.SingleTypeSchema {
     primaryHex: Schema.Attribute.String;
     publishedAt: Schema.Attribute.DateTime;
     secondaryHex: Schema.Attribute.String;
+    textButtonHex: Schema.Attribute.String;
     textPrimaryHex: Schema.Attribute.String;
     textSecondaryHex: Schema.Attribute.String;
     updatedAt: Schema.Attribute.DateTime;

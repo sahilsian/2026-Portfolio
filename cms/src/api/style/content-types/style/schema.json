@@ -31,6 +31,12 @@
     },
     "textSecondaryHex": {
       "type": "string"
+    },
+    "textButtonHex": {
+      "type": "string"
+    },
+    "iconActiveHex": {
+      "type": "string"
     }
   }
 }

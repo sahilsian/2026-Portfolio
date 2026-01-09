@@ -13,12 +13,17 @@ export interface PaginationProps {
     page: number,
     pageSize: number
 }
+
+export type Views = 'post' | 'list'
+export const VIEWS = ['post', 'list'] as const
+
 interface State {
     mode: 'IDLE' | 'LOADING' | 'ERR',
     pagination: PaginationProps,
     search?: string,
     category?: string
     filters: Record<string,any>
+    view: Views
 }
 
 // Σ Actions
@@ -30,6 +35,8 @@ export enum ACTIONS_LIST {
 
     PUSH_CATEGORY = "PUSH_CATEGORY",
     CLEAR_CATEGORY = "CLEAR_CATEGORY",
+
+    CHANGE_VIEW = "CHANGE_VIEW",
 
     SET_SUCCESS = "SET_SUCCESS",
     SET_ERROR = "SET_ERROR",
@@ -58,6 +65,11 @@ type Action_ClearCategory = {
     type: ACTIONS_LIST.CLEAR_CATEGORY
 }
 
+type Action_ChangeView = {
+    type: ACTIONS_LIST.CHANGE_VIEW
+    cargo: Views
+}
+
 type Action_SetSuccess = {
     type: ACTIONS_LIST.SET_SUCCESS
 }
@@ -75,6 +87,7 @@ type Action = Action_CommitSearch |
     Action_ClearSearch |
     Action_PushCategory |
     Action_ClearCategory |
+    Action_ChangeView |
     Action_SetSuccess |
     Action_SetError |
     Action_SetLoading
@@ -113,6 +126,13 @@ const transitionFunc = (state:State, action:Action): State => {
                 category: "all"
             }
 
+        case ACTIONS_LIST.CHANGE_VIEW:
+            return {
+                ...state,
+                mode: "LOADING",
+                view: action.cargo
+            }
+
         case ACTIONS_LIST.SET_LOADING:
             return {
                 ...state,
@@ -143,6 +163,7 @@ const initState:State = {
     },
     search: "",
     category: "all",
+    view: "post",
     filters: {}
 }
 
@@ -156,7 +177,9 @@ export interface ControlInterface {
     // Clears search state
     clearSearch: () => void
     clearCategory: () => void
-
+    // Changes View
+    changeView: (view:Views) => void
+    // Flag
     setSuccess: () => void
     setLoading: () => void
     setError: () => void
@@ -173,7 +196,6 @@ export const useControl = ():ControlInterface => {
 
     return {
         state,
-
         // Search Transitions
         commitSearch: () => dispatch({type: ACTIONS_LIST.COMMIT_SEARCH}),
         pushSearch: (query:string) => dispatch({type: ACTIONS_LIST.PUSH_SEARCH, cargo: query}),
@@ -182,6 +204,9 @@ export const useControl = ():ControlInterface => {
         // Category Transitions
         pushCategory: (query:string) => dispatch({type: ACTIONS_LIST.PUSH_CATEGORY, cargo: query}),
         clearCategory: () => dispatch({type: ACTIONS_LIST.CLEAR_CATEGORY}),
+
+        // View Transitions
+        changeView: (query:Views) => dispatch({type: ACTIONS_LIST.CHANGE_VIEW, cargo: query}),
 
         // "Flag" Transitions
         setSuccess: () => dispatch({type: ACTIONS_LIST.SET_SUCCESS}),

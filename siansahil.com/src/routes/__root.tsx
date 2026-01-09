@@ -114,6 +114,22 @@ function RootDocument({ children }: { children: React.ReactNode }) {
                 body {
                     background-color: ${styles.backgroundHex};
                 }
+                
+                .text_button {
+                    color: ${styles.textButtonHex};
+                }
+                
+                .text_highlighted {
+                    color: ${styles.secondaryHex};
+                }
+                
+                .text_secondary {
+                    color: ${styles.textSecondaryHex};
+                }
+                
+                .icon_active {
+                    background-color: ${styles.iconActiveHex};
+                }
               `}</style>
           </head>
 

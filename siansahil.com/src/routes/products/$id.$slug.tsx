@@ -53,7 +53,6 @@ function RouteComponent() {
             type={"product"}
             product={product}
         >
-
         </ProductRenderer>
     </div>
 }

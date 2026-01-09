@@ -8,9 +8,9 @@ interface IconProps {
 }
 
 const sizeClasses = {
-    small: "w-4 h-4",    // 16px
-    medium: "w-6 h-6",   // 24px
-    large: "w-8 h-8"     // 32px
+    small: "w-4 h-4",
+    medium: "w-6 h-6",
+    large: "w-8 h-8"
 }
 
 const Icon = ({icon, size = "medium"}: IconProps) => {
@@ -20,7 +20,7 @@ const Icon = ({icon, size = "medium"}: IconProps) => {
     }
 
     return (
-        <div className={`${sizeClasses[size]} mb-1`}>
+        <div className={`${sizeClasses[size]}`}>
             {icon}
         </div>
     );

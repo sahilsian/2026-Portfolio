@@ -10,6 +10,7 @@ export interface StylesContextProps {
     textPrimaryHex?: string;
     textSecondaryHex?: string;
     textButtonHex?: string;
+    iconActiveHex?: string;
 }
 
 
@@ -28,10 +29,10 @@ export const StylesProvider = ({children, colors}: StylesProviderProps) => {
             colors.secondaryHex,
             colors.textPrimaryHex,
             colors.textSecondaryHex,
-            colors.textButtonHex
+            colors.textButtonHex,
+            colors.iconActiveHex
         ]
     )
-
     return <StylesContext value={value}>
         {children}
     </StylesContext>
