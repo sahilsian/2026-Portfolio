@@ -24,7 +24,6 @@ export const Route = createFileRoute('/')(
 
         },
         head: ({ loaderData }) => {
-            console.log(loaderData)
             const seo: pageSEO = loaderData?.seo ?? {
                 title: 'Fluentclicks.com',
                 description: 'Fluentclicks uses AI to generate leads that speak fluently to your business processes.',

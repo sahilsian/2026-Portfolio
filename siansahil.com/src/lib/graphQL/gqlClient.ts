@@ -148,7 +148,6 @@ export const submitForm = createServerFn()
                 submission: result.createSubmission,
             };
         } catch (error) {
-            console.error('Submission error:', error);
             throw new Error('Failed to submit form');
         }
     });

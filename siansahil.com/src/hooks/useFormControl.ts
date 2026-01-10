@@ -199,8 +199,6 @@ const transitionFunc = (state:State, action:Action): State => {
             const newFields = new Map(state.runtimeFields)
             newFields.set(action.cargo.fieldID, newFieldValue)
 
-            console.log('fieldUpdate')
-
             return {
                 ...state,
                 mode: 'dirty',

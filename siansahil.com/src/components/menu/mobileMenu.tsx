@@ -2,6 +2,8 @@
 import {MenuIcon, XIcon} from "lucide-react";
 import {useMobileMenu} from "@/hooks/useMobileMenu.ts";
 import MenuItem, {MenuItemProps} from "@/components/menuItem";
+import {useEffect} from "react";
+import {useLocation} from "@tanstack/react-router";
 
 interface MobileMenuProps {
     menuItems?: MenuItemProps[]
@@ -10,9 +12,17 @@ interface MobileMenuProps {
 
 export const MobileMenu = ({menuItems}:MobileMenuProps) => {
     const { isMobileMenu, toggleMobileMenu } = useMobileMenu();
+    const location = useLocation();
+
+    useEffect(() => {
+        if (isMobileMenu) {
+            toggleMobileMenu()
+        }
+    }, [location])
+
     return (
         <div className={''}>
-            <div className={"absolute top-[15px] z-20 lg:hidden flex hover:cursor-pointer "}>
+            <div className={"absolute top-[10px] right-[20px] z-20 lg:hidden flex hover:cursor-pointer "}>
                 <div onClick={toggleMobileMenu} style={ isMobileMenu ? { display: 'flex' } : {  display: 'none'} }>
                     <XIcon />
                 </div>

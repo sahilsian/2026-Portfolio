@@ -34,11 +34,9 @@ export const Control = ({ controlMachine, pageCount, total=0, children, categori
         switch (routerState.status) {
             case "idle":
                 controlMachine.setSuccess();
-                console.log("SUCCESS")
                 break;
             case "pending":
                 controlMachine.setLoading();
-                console.log("LOADING")
                 break;
         }
     }, [routerState.status]);
@@ -99,7 +97,6 @@ export const Control = ({ controlMachine, pageCount, total=0, children, categori
 
     const handleChangeView = async(view:Views) => {
         controlMachine.changeView(view)
-        console.log(view)
         await navigate({
             to: ".",
             search: (prev:any) => ({
