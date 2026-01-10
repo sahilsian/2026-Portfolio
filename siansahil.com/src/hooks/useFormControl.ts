@@ -360,11 +360,11 @@ const buildSubmissionPayload = (state: State) => {
         .from(state.runtimeFields.entries())
         .filter(([_, fieldState]) => fieldState.config.metadata.fieldType !== 'submit')
         .map(([_, fieldState]) => ({
-        fieldId: fieldState.config.id,
-        fieldName: fieldState.config.name,
+            fieldId: fieldState.config.id,
+            fieldName: fieldState.config.name,
             fieldType: fieldState.config.metadata.fieldType as 'text' | 'email' | 'textarea' | 'dropdown',
-        value: fieldState.value,
-    }));
+            value: fieldState.value,
+        }));
 
     return {
         formId: state.formSchema.documentId,
