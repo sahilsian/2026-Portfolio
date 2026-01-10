@@ -46,15 +46,16 @@ export const Control = ({ controlMachine, pageCount, total=0, children, categori
     const handleSearchChange = async (e:any) => {
         controlMachine.pushSearch(e.target.value)
 
-        if(e.target.value === "") {
-            await navigate({
-                to: ".",
-                search: (prev:any) => ({
-                    ...prev,
-                    title: ""
-                })
-            })
-        }
+        // Removed due to UX Concerns
+        // if(e.target.value === "") {
+        //     await navigate({
+        //         to: ".",
+        //         search: (prev:any) => ({
+        //             ...prev,
+        //             title: ""
+        //         })
+        //     })
+        // }
     }
     const handleClear = async () => {
         controlMachine.clearSearch();
