@@ -1,0 +1,30 @@
+{
+  "kind": "collectionType",
+  "collectionName": "submissions",
+  "info": {
+    "singularName": "submission",
+    "pluralName": "submissions",
+    "displayName": "submission"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "form": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::form.form",
+      "inversedBy": "submissions"
+    },
+    "payload": {
+      "type": "json"
+    },
+    "metadata": {
+      "type": "json"
+    },
+    "submissionDate": {
+      "type": "datetime"
+    }
+  }
+}

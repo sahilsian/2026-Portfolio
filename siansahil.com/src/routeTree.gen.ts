@@ -11,7 +11,7 @@
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as ProductsIndexRouteImport } from './routes/products/index'
-import { Route as ContactIndexRouteImport } from './routes/contact/index'
+import { Route as FormsIdRouteImport } from './routes/forms/$id'
 import { Route as ProductsIdSlugRouteImport } from './routes/products/$id.$slug'
 import { Route as ApiTrpcSplatRouteImport } from './routes/api.trpc.$'
 
@@ -25,9 +25,9 @@ const ProductsIndexRoute = ProductsIndexRouteImport.update({
   path: '/products/',
   getParentRoute: () => rootRouteImport,
 } as any)
-const ContactIndexRoute = ContactIndexRouteImport.update({
-  id: '/contact/',
-  path: '/contact/',
+const FormsIdRoute = FormsIdRouteImport.update({
+  id: '/forms/$id',
+  path: '/forms/$id',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ProductsIdSlugRoute = ProductsIdSlugRouteImport.update({
@@ -43,14 +43,14 @@ const ApiTrpcSplatRoute = ApiTrpcSplatRouteImport.update({
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
-  '/contact': typeof ContactIndexRoute
+  '/forms/$id': typeof FormsIdRoute
   '/products': typeof ProductsIndexRoute
   '/api/trpc/$': typeof ApiTrpcSplatRoute
   '/products/$id/$slug': typeof ProductsIdSlugRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
-  '/contact': typeof ContactIndexRoute
+  '/forms/$id': typeof FormsIdRoute
   '/products': typeof ProductsIndexRoute
   '/api/trpc/$': typeof ApiTrpcSplatRoute
   '/products/$id/$slug': typeof ProductsIdSlugRoute
@@ -58,7 +58,7 @@ export interface FileRoutesByTo {
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
-  '/contact/': typeof ContactIndexRoute
+  '/forms/$id': typeof FormsIdRoute
   '/products/': typeof ProductsIndexRoute
   '/api/trpc/$': typeof ApiTrpcSplatRoute
   '/products/$id/$slug': typeof ProductsIdSlugRoute
@@ -67,16 +67,16 @@ export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
     | '/'
-    | '/contact'
+    | '/forms/$id'
     | '/products'
     | '/api/trpc/$'
     | '/products/$id/$slug'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/contact' | '/products' | '/api/trpc/$' | '/products/$id/$slug'
+  to: '/' | '/forms/$id' | '/products' | '/api/trpc/$' | '/products/$id/$slug'
   id:
     | '__root__'
     | '/'
-    | '/contact/'
+    | '/forms/$id'
     | '/products/'
     | '/api/trpc/$'
     | '/products/$id/$slug'
@@ -84,7 +84,7 @@ export interface FileRouteTypes {
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
-  ContactIndexRoute: typeof ContactIndexRoute
+  FormsIdRoute: typeof FormsIdRoute
   ProductsIndexRoute: typeof ProductsIndexRoute
   ApiTrpcSplatRoute: typeof ApiTrpcSplatRoute
   ProductsIdSlugRoute: typeof ProductsIdSlugRoute
@@ -106,11 +106,11 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ProductsIndexRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/contact/': {
-      id: '/contact/'
-      path: '/contact'
-      fullPath: '/contact'
-      preLoaderRoute: typeof ContactIndexRouteImport
+    '/forms/$id': {
+      id: '/forms/$id'
+      path: '/forms/$id'
+      fullPath: '/forms/$id'
+      preLoaderRoute: typeof FormsIdRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/products/$id/$slug': {
@@ -132,7 +132,7 @@ declare module '@tanstack/react-router' {
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
-  ContactIndexRoute: ContactIndexRoute,
+  FormsIdRoute: FormsIdRoute,
   ProductsIndexRoute: ProductsIndexRoute,
   ApiTrpcSplatRoute: ApiTrpcSplatRoute,
   ProductsIdSlugRoute: ProductsIdSlugRoute,

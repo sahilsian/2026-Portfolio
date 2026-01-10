@@ -1,4 +1,4 @@
-import Collection from "@/components/layouts/collection";
+import CollectionLayout from "@/components/layouts/collection";
 import {PageInfoProps} from "@/components/pagination";
 
 interface CollectionRendererProps {
@@ -17,12 +17,12 @@ export interface CollectionCategory {
 
 // Collection Factory
 const CollectionRenderer = ({collection, type, pageInfo, categories}: CollectionRendererProps) => {
-    return <Collection
+    return <CollectionLayout
             type={type}
             collection={collection}
             pageInfo={pageInfo}
             categories={categories}
-        ></Collection>
+        ></CollectionLayout>
 }
 
 export default CollectionRenderer

@@ -63,6 +63,92 @@ export interface ControlVariation extends Struct.ComponentSchema {
   };
 }
 
+export interface FormDropdownField extends Struct.ComponentSchema {
+  collectionName: 'components_form_dropdown_fields';
+  info: {
+    displayName: 'dropdownField';
+  };
+  attributes: {
+    label: Schema.Attribute.String;
+    metadata: Schema.Attribute.Component<'form.type', false>;
+    name: Schema.Attribute.String;
+    options: Schema.Attribute.JSON;
+    required: Schema.Attribute.Boolean;
+  };
+}
+
+export interface FormEmailField extends Struct.ComponentSchema {
+  collectionName: 'components_form_email_fields';
+  info: {
+    displayName: 'emailField';
+  };
+  attributes: {
+    className: Schema.Attribute.String;
+    disabled: Schema.Attribute.Boolean;
+    metadata: Schema.Attribute.Component<'form.type', false>;
+    name: Schema.Attribute.String;
+    placeholder: Schema.Attribute.String;
+    required: Schema.Attribute.Boolean;
+  };
+}
+
+export interface FormSubmissionField extends Struct.ComponentSchema {
+  collectionName: 'components_form_submission_fields';
+  info: {
+    displayName: 'submissionField';
+    icon: 'attachment';
+  };
+  attributes: {
+    className: Schema.Attribute.String;
+    disabled: Schema.Attribute.Boolean;
+    metadata: Schema.Attribute.Component<'form.type', false>;
+    name: Schema.Attribute.String;
+  };
+}
+
+export interface FormTextField extends Struct.ComponentSchema {
+  collectionName: 'components_form_text_fields';
+  info: {
+    displayName: 'textField';
+    icon: 'database';
+  };
+  attributes: {
+    className: Schema.Attribute.String;
+    disabled: Schema.Attribute.Boolean;
+    metadata: Schema.Attribute.Component<'form.type', false>;
+    name: Schema.Attribute.String;
+    placeholder: Schema.Attribute.String;
+    required: Schema.Attribute.Boolean;
+  };
+}
+
+export interface FormTextareaField extends Struct.ComponentSchema {
+  collectionName: 'components_form_textarea_fields';
+  info: {
+    displayName: 'textareaField';
+  };
+  attributes: {
+    className: Schema.Attribute.String;
+    disabled: Schema.Attribute.Boolean;
+    metadata: Schema.Attribute.Component<'form.type', false>;
+    name: Schema.Attribute.String;
+    placeholder: Schema.Attribute.String;
+    required: Schema.Attribute.Boolean;
+  };
+}
+
+export interface FormType extends Struct.ComponentSchema {
+  collectionName: 'components_form_types';
+  info: {
+    displayName: 'metadata';
+  };
+  attributes: {
+    fieldType: Schema.Attribute.Enumeration<
+      ['textarea', 'email', 'text', 'dropdown', 'submit']
+    >;
+  };
+}
+
 export interface LayoutFeature extends Struct.ComponentSchema {
   collectionName: 'components_layout_features';
   info: {
@@ -178,6 +264,12 @@ declare module '@strapi/strapi' {
       'control.category': ControlCategory;
       'control.menu-item': ControlMenuItem;
       'control.variation': ControlVariation;
+      'form.dropdown-field': FormDropdownField;
+      'form.email-field': FormEmailField;
+      'form.submission-field': FormSubmissionField;
+      'form.text-field': FormTextField;
+      'form.textarea-field': FormTextareaField;
+      'form.type': FormType;
       'layout.feature': LayoutFeature;
       'layout.group': LayoutGroup;
       'layout.hero': LayoutHero;

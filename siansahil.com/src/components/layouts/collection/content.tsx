@@ -14,7 +14,6 @@ export const Content = ({controlMachine, title, description, categoryKey}:Conten
     const [animationComplete, setAnimationComplete] = useState(false);
 
     useEffect(() => {
-        // Wait for page to fully load
         if (document.readyState === 'complete') {
             setIsPageLoaded(true);
         } else {
@@ -29,9 +28,7 @@ export const Content = ({controlMachine, title, description, categoryKey}:Conten
 
         setAnimationComplete(false);
 
-        // Small delay to ensure DOM is ready
         const startTimer = setTimeout(() => {
-            // Animation completes after 1.5s (1.2s + 0.3s delay)
             const completeTimer = setTimeout(() => {
                 setAnimationComplete(true);
             }, 1500);

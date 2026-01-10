@@ -12,7 +12,7 @@ interface CollectionProps {
     pageInfo: PageInfoProps;
     categories: CollectionCategory[]
 }
-const Collection = ({collection, pageInfo, type, categories}:CollectionProps) => {
+const CollectionLayout = ({collection, pageInfo, type, categories}:CollectionProps) => {
     const controlMachine = useControl()
     const search = useSearch({ strict: false })
 
@@ -31,4 +31,4 @@ const Collection = ({collection, pageInfo, type, categories}:CollectionProps) =>
     )
 }
 
-export default Collection
+export default CollectionLayout

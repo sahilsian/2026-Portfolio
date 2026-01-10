@@ -221,3 +221,78 @@ export const ROOT_SEO = gql`
       }
     }
 `
+
+export const FORM_ITEM = gql`
+    ${IMAGE_FIELDS}
+    
+    query Form($documentId: ID!) {
+  form(documentId: $documentId) {
+    image {
+        ...ImageFields
+    }
+    documentId
+    title
+    description
+    fields {
+      ... on ComponentFormTextField {
+        required
+        id
+        name
+        disabled
+        className
+        placeholder
+        metadata {
+          fieldType
+        }
+      }
+      ... on ComponentFormDropdownField {
+        required
+        id
+        name
+        label
+        options
+        metadata {
+          fieldType
+        }
+      }
+      ... on ComponentFormTextareaField {
+        required
+        id
+        name
+        disabled
+        className
+        placeholder
+        metadata {
+          fieldType
+        }
+      }
+      ... on ComponentFormEmailField {
+        required
+        id
+        name
+        disabled
+        className
+        placeholder
+        metadata {
+          fieldType
+        }
+      }
+      
+      ... on ComponentFormSubmissionField {
+        name
+        disabled
+        className
+        metadata {
+          fieldType
+        }
+      }
+      
+      ... on Error {
+        code
+        message
+      }
+    }
+    slug
+  }
+}
+`

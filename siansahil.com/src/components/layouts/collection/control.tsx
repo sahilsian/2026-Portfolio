@@ -45,8 +45,18 @@ export const Control = ({ controlMachine, pageCount, total=0, children, categori
 
 
     // State Updates
-    const handleSearchChange = (e:any) => {
+    const handleSearchChange = async (e:any) => {
         controlMachine.pushSearch(e.target.value)
+
+        if(e.target.value === "") {
+            await navigate({
+                to: ".",
+                search: (prev:any) => ({
+                    ...prev,
+                    title: ""
+                })
+            })
+        }
     }
     const handleClear = async () => {
         controlMachine.clearSearch();
@@ -149,7 +159,7 @@ export const Control = ({ controlMachine, pageCount, total=0, children, categori
                 </div>
                 :
                 <div>
-                    <Typography level={"6"} value={"An error has occured. Please contact me with a screenshot!"}></Typography>
+                    <Typography level={"6"} value={"An error has occured. Please forms me with a screenshot!"}></Typography>
                 </div>
             }
 
