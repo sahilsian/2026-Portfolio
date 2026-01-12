@@ -16,10 +16,6 @@ const config = defineConfig({
     }),
     tailwindcss(),
     tanstackStart({
-        prerender: {
-            enabled: true,
-            crawlLinks: false
-        },
         sitemap: {
             enabled: true,
             host: "https://siansahil.com/"

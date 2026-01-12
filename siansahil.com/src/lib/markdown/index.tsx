@@ -90,7 +90,7 @@ export class Markdown {
 
     private flushRemainingLists(ctx: RenderCtx) {
         if (ctx.ulItems.length > 0) {
-            ctx.htmlParts.push(<ul key={ctx.htmlParts.length}>{ctx.ulItems.splice(0)}</ul>);
+            ctx.htmlParts.push(<ul className={"list-disc list-outside ml-6"} key={ctx.htmlParts.length}>{ctx.ulItems.splice(0)}</ul>);
         }
         if (ctx.olItems.length > 0) {
             ctx.htmlParts.push(<ol key={ctx.htmlParts.length}>{ctx.olItems.splice(0)}</ol>);
