@@ -1,8 +1,8 @@
 'use client'
-import {PropsWithChildren, useEffect} from "react";
+import {PropsWithChildren} from "react";
 import Typography from "@/components/typography";
 import Pagination from "@/components/pagination";
-import {useNavigate, useRouterState, useSearch} from "@tanstack/react-router";
+import {useNavigate, useSearch} from "@tanstack/react-router";
 import {STANDARD_PAGINATION} from "@/lib/data/queries/gql.ts";
 import SearchInput from "@/components/searchInput";
 import {ControlInterface, Views} from "@/hooks/useControl.ts";
@@ -16,10 +16,8 @@ interface ControlProps extends PropsWithChildren {
     total?: number;
     categories: CollectionCategory[]
 }
-
 export const Control = ({ controlMachine, pageCount, total=0, children, categories}:ControlProps) => {
     const search = useSearch({ strict: false });
-    const routerState = useRouterState()
     const navigate = useNavigate()
 
     const currentPage = search.page || STANDARD_PAGINATION.pagination.page;
@@ -28,19 +26,6 @@ export const Control = ({ controlMachine, pageCount, total=0, children, categori
     const categoryOptions = categories.map((category) => {
         return { name: category.category.name }
     })
-
-    // Loading effects
-    useEffect(() => {
-        switch (routerState.status) {
-            case "idle":
-                controlMachine.setSuccess();
-                break;
-            case "pending":
-                controlMachine.setLoading();
-                break;
-        }
-    }, [routerState.status]);
-
 
     // State Updates
     const handleSearchChange = async (e:any) => {

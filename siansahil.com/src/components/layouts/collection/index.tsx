@@ -5,13 +5,14 @@ import {PageInfoProps} from "@/components/pagination";
 import {useControl} from "@/hooks/useControl.ts";
 import {CollectionCategory} from "@/components/renderers/collectionRenderer";
 import {useSearch} from "@tanstack/react-router";
-
 interface CollectionProps {
     collection: any[];
     type: string;
     pageInfo: PageInfoProps;
     categories: CollectionCategory[]
 }
+
+
 const CollectionLayout = ({collection, pageInfo, type, categories}:CollectionProps) => {
     const controlMachine = useControl()
     const search = useSearch({ strict: false })
