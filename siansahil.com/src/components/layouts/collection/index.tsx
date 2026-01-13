@@ -2,9 +2,10 @@ import {List} from "@/components/layouts/collection/list.tsx";
 import {Content} from "@/components/layouts/collection/content.tsx";
 import {Background} from "@/components/layouts/collection/background.tsx";
 import {PageInfoProps} from "@/components/pagination";
-import {useControl} from "@/hooks/useControl.ts";
 import {CollectionCategory} from "@/components/renderers/collectionRenderer";
 import {useSearch} from "@tanstack/react-router";
+import {useAppState} from "@/hooks/useAppState.ts";
+
 interface CollectionProps {
     collection: any[];
     type: string;
@@ -14,7 +15,7 @@ interface CollectionProps {
 
 
 const CollectionLayout = ({collection, pageInfo, type, categories}:CollectionProps) => {
-    const controlMachine = useControl()
+    const controlMachine = useAppState()
     const search = useSearch({ strict: false })
 
     const currentCategory = search.category || 'all'

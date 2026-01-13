@@ -15,7 +15,6 @@ interface HeroLayoutProps {
     primary: ButtonData
 }
 const HeroLayout = ({variation, image, title, description, profile, primary}:HeroLayoutProps) => {
-
     return (
         <Screen classOverride={"min-h-screen"}>
             <div className={"flex w-full h-full flex-1 "}>

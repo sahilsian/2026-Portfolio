@@ -7,6 +7,7 @@ interface InjectedProps {
     controlMachine: ControlInterface
 }
 
+// depreciated for now
 export const withRouterLoading = <P extends InjectedProps>(
     Component: ComponentType<P & InjectedProps>
 ) => {

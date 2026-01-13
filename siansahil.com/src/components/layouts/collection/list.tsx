@@ -6,7 +6,6 @@ import {ControlInterface} from "@/hooks/useControl.ts";
 import NoResults from "@/components/noResults";
 import {CollectionCategory} from "@/components/renderers/collectionRenderer";
 import ListPost from "@/components/listPost";
-import {withRouterLoading} from "@/components/hoc/withRouterLoading";
 
 interface ListProps {
     collection: any[],
@@ -17,7 +16,7 @@ interface ListProps {
 
 const PostWithRouter = withRouter(Post);
 const ListPostWithRouter = withRouter(ListPost);
-export const ControlWithLoading = withRouterLoading(Control);
+
 export const List = ({controlMachine, collection, pageInfo, categories}: ListProps) => {
 
     const returnPostCollection = () => {
@@ -69,7 +68,7 @@ export const List = ({controlMachine, collection, pageInfo, categories}: ListPro
     }
 
     return (
-        <ControlWithLoading categories={categories} controlMachine={controlMachine} pageCount={pageInfo.pageCount} total={pageInfo.total}>
+        <Control categories={categories} controlMachine={controlMachine} pageCount={pageInfo.pageCount} total={pageInfo.total}>
             <div key={controlMachine.state.view}>
                 {collection.length === 0 && (
                     <div className={"min-h-[420px]"}>
@@ -78,6 +77,6 @@ export const List = ({controlMachine, collection, pageInfo, categories}: ListPro
                 )}
                 {renderType()}
             </div>
-        </ControlWithLoading>
+        </Control>
     )
 }

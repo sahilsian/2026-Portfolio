@@ -1,6 +1,7 @@
 import Typography from "@/components/typography";
 import {ControlInterface} from "@/hooks/useControl.ts";
 import {useEffect, useState} from "react";
+import Spinner from "@/components/spinner";
 
 interface ContentProps {
     title?: string;
@@ -49,13 +50,8 @@ export const Content = ({controlMachine, title, description, categoryKey}:Conten
                     <Typography level={"2"} value={title}></Typography>
                 </div>
 
-                {controlMachine.state.mode == 'LOADING' &&
-                    <div className="flex items-center justify-center mb-5">
-                        <div
-                            className="h-8 w-8 animate-spin rounded-full border-4 border-gray-300 border-t-transparent"
-                        ></div>
-                    </div>
-                }
+
+                {controlMachine.state.mode == 'LOADING' && <Spinner></Spinner>}
             </div>
             <div
                 key={`desc-${categoryKey}-${description}`}
