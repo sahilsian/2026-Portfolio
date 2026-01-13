@@ -7,13 +7,14 @@ import appCss from '../styles.css?url'
 import type {QueryClient} from "@tanstack/react-query";
 import type {TRPCOptionsProxy} from "@trpc/tanstack-react-query";
 import type {TRPCRouter} from "@/integrations/trpc/router.ts";
-import {getStrapiRoot, queryFooter, queryMenu, queryRootSEO, queryStyles} from "@/lib/graphQL/gqlClient.ts";
+import {queryFooter, queryMenu, queryRootSEO, queryStyles} from "@/lib/data/queries/queries.ts";
 import Menu from "@/components/menu";
 import Footer from "@/components/footer";
 import {StrapiProvider} from "@/contexts/strapi/strapiProvider.tsx";
 import {MenuProvider} from "@/contexts/menu/menuProvider.tsx";
 import {StylesContextProps, StylesProvider} from "@/contexts/styles/stylesProvider.tsx";
 import {rootSEO} from "@/components/seo/interfaces.ts";
+import {getStrapiRoot} from "@/lib/data/gqlServerClient.ts";
 
 interface MyRouterContext {
     queryClient: QueryClient

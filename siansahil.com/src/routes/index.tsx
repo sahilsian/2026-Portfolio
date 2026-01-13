@@ -1,5 +1,5 @@
 import { createFileRoute } from '@tanstack/react-router';
-import { queryHome } from "@/lib/graphQL/gqlClient.ts";
+import { queryHome } from "@/lib/data/queries/queries.ts";
 import BlockRenderer from "@/components/renderers/blockRenderer";
 import {pageSEO} from "@/components/seo/interfaces.ts";
 

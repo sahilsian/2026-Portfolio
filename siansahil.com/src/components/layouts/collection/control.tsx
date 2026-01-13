@@ -3,7 +3,7 @@ import {PropsWithChildren, useEffect} from "react";
 import Typography from "@/components/typography";
 import Pagination from "@/components/pagination";
 import {useNavigate, useRouterState, useSearch} from "@tanstack/react-router";
-import {STANDARD_PAGINATION} from "@/lib/graphQL/queries.ts";
+import {STANDARD_PAGINATION} from "@/lib/data/queries/gql.ts";
 import SearchInput from "@/components/searchInput";
 import {ControlInterface, Views} from "@/hooks/useControl.ts";
 import CategoryInput from "@/components/categoryInput";
@@ -119,7 +119,7 @@ export const Control = ({ controlMachine, pageCount, total=0, children, categori
                             onEnter={async(e) => {
                                 if(e.key === "Enter") await handleSearch()
                             }}
-                            disabled={controlMachine.state.mode === "LOADING"}
+                            disabled={controlMachine.isProcessing}
                             showClear={!!controlMachine.state.search}
                             onClear={handleClear}
                             onSearch={handleSearch}
@@ -143,7 +143,7 @@ export const Control = ({ controlMachine, pageCount, total=0, children, categori
                         <CategoryInput
                             value={controlMachine.state.category || ''}
                             handleChange={(e:any) => handleCategoryChange(e)}
-                            disabled={controlMachine.state.mode === "LOADING"}
+                            disabled={controlMachine.isProcessing}
                             options={categoryOptions}
                         >
                         </CategoryInput>

@@ -5,8 +5,8 @@
 // q₀ = Initial State
 
 import {StrapiImage} from "@/components/image";
+import { submitForm } from "@/lib/data/mutations/mutations";
 import {useEffect, useReducer} from "react";
-import {submitForm} from "@/lib/graphQL/gqlClient.ts";
 
 // Form
 

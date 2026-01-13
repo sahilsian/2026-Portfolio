@@ -1,5 +1,5 @@
 import {createFileRoute} from '@tanstack/react-router'
-import {queryProduct} from "@/lib/graphQL/gqlClient.ts";
+import {queryProduct} from "@/lib/data/queries/queries.ts";
 import ProductRenderer from "@/components/renderers/productRenderer";
 
 export const Route = createFileRoute('/products/$id/$slug')({

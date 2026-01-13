@@ -1,5 +1,5 @@
 import { createFileRoute } from '@tanstack/react-router'
-import {queryForm} from "@/lib/graphQL/gqlClient.ts";
+import {queryForm} from "@/lib/data/queries/queries.ts";
 import FormRenderer from "@/components/renderers/formRenderer";
 
 export const Route = createFileRoute('/forms/$id')({

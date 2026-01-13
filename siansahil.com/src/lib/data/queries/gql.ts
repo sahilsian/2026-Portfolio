@@ -1,5 +1,5 @@
 import {gql} from "@apollo/client";
-import {BUTTON_FIELDS, IMAGE_FIELDS, SEO_FIELDS, VARIATION_FIELDS} from "@/lib/graphQL/fragments.ts";
+import {BUTTON_FIELDS, IMAGE_FIELDS, SEO_FIELDS, VARIATION_FIELDS} from "@/lib/data/fragments.ts";
 
 export const NO_LIMIT = { pagination: { limit: 100, start: 0 } };
 
@@ -295,4 +295,21 @@ export const FORM_ITEM = gql`
     slug
   }
 }
+`
+
+export const BLOG_COLLECTION = gql`
+    query Blogs {
+      blogs_connection {
+        nodes {
+          content
+          publishedAt
+          documentId
+          excerpt
+          tags {
+            name
+          }
+          title
+        }
+      }
+    }
 `

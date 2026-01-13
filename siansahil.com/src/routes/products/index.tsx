@@ -1,7 +1,7 @@
 import {createFileRoute} from '@tanstack/react-router'
-import {queryCategories, queryProductCollection} from "@/lib/graphQL/gqlClient.ts";
+import {queryCategories, queryProductCollection} from "@/lib/data/queries/queries.ts";
 import CollectionRenderer from "@/components/renderers/collectionRenderer";
-import {STANDARD_PAGINATION} from "@/lib/graphQL/queries.ts";
+import {STANDARD_PAGINATION} from "@/lib/data/queries/gql.ts";
 import {pageSEO} from "@/components/seo/interfaces.ts";
 
 export const Route = createFileRoute('/products/')({

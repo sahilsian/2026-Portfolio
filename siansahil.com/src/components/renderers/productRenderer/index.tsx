@@ -1,6 +1,6 @@
 import ProductLayout from "@/components/layouts/product";
 import BlockRenderer from "@/components/renderers/blockRenderer";
-import {Product} from "@/lib/graphQL/interfaces.ts";
+import {Product} from "@/lib/data/interfaces.ts";
 
 interface ProductRendererProps {
     product: Product;

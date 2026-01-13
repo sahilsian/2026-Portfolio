@@ -1,5 +1,5 @@
 import {useReducer} from "react";
-import {STANDARD_PAGINATION} from "@/lib/graphQL/queries.ts";
+import {STANDARD_PAGINATION} from "@/lib/data/queries/gql.ts";
 import {useSearch} from "@tanstack/react-router";
 
 // (Q, Σ, δ, q₀, F)
@@ -169,6 +169,7 @@ const initState:State = {
 
 export interface ControlInterface {
     state:State
+    isProcessing: boolean
     // Pushes and clears query
     commitSearch: () => void
     // Saves query to state
@@ -194,8 +195,12 @@ export const useControl = ():ControlInterface => {
         category: search.category || "all"
     })
 
+    const isProcessing = state.mode === "LOADING";
+
+
     return {
         state,
+        isProcessing,
         // Search Transitions
         commitSearch: () => dispatch({type: ACTIONS_LIST.COMMIT_SEARCH}),
         pushSearch: (query:string) => dispatch({type: ACTIONS_LIST.PUSH_SEARCH, cargo: query}),
