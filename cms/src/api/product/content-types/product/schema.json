@@ -46,6 +46,9 @@
       "component": "control.category",
       "repeatable": false,
       "required": true
+    },
+    "dateCreated": {
+      "type": "date"
     }
   }
 }
