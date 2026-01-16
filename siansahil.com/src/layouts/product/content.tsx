@@ -14,9 +14,10 @@ interface ContentProps {
     image: StrapiImage;
     description: string;
     tabs?: Tab[];
+    dateCreated?: string;
 }
 
-export const Content = ({title, description, image, tabs}:ContentProps) => {
+export const Content = ({title, description, image, tabs, dateCreated}:ContentProps) => {
     const router = useRouter()
     const ctx = useAppState()
     return (
@@ -28,7 +29,14 @@ export const Content = ({title, description, image, tabs}:ContentProps) => {
             </div>
             <Spacer height={"10px"}></Spacer>
             <div className={"flex gap-10 flex-wrap"}>
-                <Media image={image}></Media>
+                <div className={'flex-1'}>
+                    <Media image={image}></Media>
+                    {dateCreated && <>
+                    <Spacer height={"10px"}></Spacer>
+                    <Typography level={'6'} value={"Created on: " + dateCreated}></Typography>
+                    </>}
+                </div>
+
                 <div className={"flex-2"}>
                     <div className={'flex items-center gap-3'}>
                         <Typography value={title} level={"2"}></Typography>

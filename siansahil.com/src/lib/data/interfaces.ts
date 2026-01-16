@@ -7,4 +7,5 @@ export interface Product {
     image: StrapiImage;
     description:string;
     tabs: Tab[];
+    dateCreated?: string;
 }

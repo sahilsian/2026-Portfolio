@@ -11,13 +11,14 @@ interface ProductLayoutProps {
     description: string;
     backgroundColor?: string;
     tabs?: Tab[];
+    dateCreated?: string;
 }
 
-const ProductLayout = ({ title, description, image, tabs, backgroundColor="#EDEDED"}:ProductLayoutProps) => {
+const ProductLayout = ({ title, description, image, tabs, dateCreated, backgroundColor="#EDEDED"}:ProductLayoutProps) => {
     return (
         <div style={{backgroundColor: backgroundColor}} className={'p-6 md:px-22 py-22 relative'}>
             <Background></Background>
-            <Content title={title} description={description} image={image} tabs={tabs}></Content>
+            <Content dateCreated={dateCreated} title={title} description={description} image={image} tabs={tabs}></Content>
         </div>
 
     )

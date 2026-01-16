@@ -17,6 +17,7 @@ const ProductRenderer = ({blocks, product, type}:ProductRendererProps) => {
             image={product.image}
             description={product.description}
             tabs={product.tabs}
+            dateCreated={product.dateCreated}
         ></ProductLayout>
         <BlockRenderer blocks={blocks}></BlockRenderer>
     </div>
