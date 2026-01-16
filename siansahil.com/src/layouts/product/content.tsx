@@ -4,6 +4,8 @@ import {Media} from "@/layouts/product/media.tsx";
 import TabbedContent, {Tab} from "@/components/tabbedContent";
 import {useRouter} from "@tanstack/react-router";
 import {StrapiImage} from "@/components/image";
+import {useAppState} from "@/hooks/useAppState.ts";
+import Spinner from "@/components/spinner";
 
 interface ContentProps {
     type?: string;
@@ -16,6 +18,7 @@ interface ContentProps {
 
 export const Content = ({title, description, image, tabs}:ContentProps) => {
     const router = useRouter()
+    const ctx = useAppState()
     return (
         <div className={"Product relative z-30"}>
             <div className={"flex"}>
@@ -27,7 +30,12 @@ export const Content = ({title, description, image, tabs}:ContentProps) => {
             <div className={"flex gap-10 flex-wrap"}>
                 <Media image={image}></Media>
                 <div className={"flex-2"}>
-                    <Typography level={"2"} value={title}></Typography>
+                    <div className={'flex items-center gap-3'}>
+                        <Typography value={title} level={"2"}></Typography>
+                        <div className={''}>
+                            {ctx.isProcessing && <Spinner></Spinner>}
+                        </div>
+                    </div>
                     <Typography level={"p"} value={description}></Typography>
                     {/*<div>*/}
                     {/*    <Typography level={"6"} value={`${type}/${slug}`}></Typography>*/}

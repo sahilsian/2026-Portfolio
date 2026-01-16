@@ -173,6 +173,7 @@ export const PRODUCT_COLLECTION = gql`
           image {
           ...ImageFields
           }
+          dateCreated
         }
         pageInfo {
           page
@@ -201,6 +202,8 @@ export const PRODUCT_ITEM = gql`
                   title
                   richDescription
                 }
+                dateCreated
+             
               }
     }
 `

@@ -11,11 +11,12 @@ interface PostProps {
     clickable: boolean;
     documentId: string;
     disabled?: boolean
-    category: string
+    category: string;
+    dateCreated?: string
 }
 
 const Post =
-    ({ disabled, clickable, slug, documentId, title, description, image, goToPost, category}: PostProps & RouterInjectedProps
+    ({ disabled, clickable, slug, documentId, title, description, image, goToPost, category, dateCreated}: PostProps & RouterInjectedProps
     ) => {
     const handleClick = () => {
         if (clickable) {
@@ -38,11 +39,18 @@ const Post =
         >
             <Image image={image} className={'rounded-2xl w-full aspect-square object-cover object-top'} />
             <Spacer height={"20px"} />
-            <div className={'flex items-center justify-between'}>
-                <div className={'flex-1 '}>
+            <div className={'mb-2'}>
+                <div className={'flex-1'}>
                     <Typography underline level={"3"} value={title} />
                 </div>
-                <Typography secondary level={"6"} value={category} />
+                <div className={'flex gap-3'}>
+                    <Typography secondary level={"6"} value={String(category[0]).toUpperCase() + String(category).slice(1)} />
+
+                    {dateCreated &&<>
+                        <Typography secondary level={"6"} value={"|"} />
+                        <Typography secondary level={"6"} value={dateCreated} />
+                    </>}
+                </div>
             </div>
             <Typography level={"p"} value={description} />
         </div>

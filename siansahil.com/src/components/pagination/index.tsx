@@ -44,7 +44,7 @@ const Pagination = ({ page, pageCount, pageSize, total}:PaginationProps):React.J
     }
     return (
         <div className={'flex-col sm:flex-row flex sm:gap-6'}>
-            <div className={"flex items-center gap-[5px]"}>
+            <div className={"flex flex-nowrap items-center gap-[5px]"}>
                 <Typography level={'6'} value={`${start}-${end}`}></Typography>
                 <Typography level={'6'} value={"of"}></Typography>
                 <Typography level={'6'} value={total.toString()}></Typography>
