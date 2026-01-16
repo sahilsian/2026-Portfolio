@@ -1,6 +1,6 @@
 import Post from "@/components/post";
 import {withRouter} from "@/decorators/withRouter";
-import {Control} from "@/components/layouts/collection/control.tsx";
+import {Control} from "@/layouts/collection/control.tsx";
 import {PageInfoProps} from "@/components/pagination";
 import {ControlInterface} from "@/hooks/useControl.ts";
 import NoResults from "@/components/noResults";

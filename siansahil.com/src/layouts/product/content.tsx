@@ -1,6 +1,6 @@
 import Typography from "@/components/typography";
 import Spacer from "@/components/spacer";
-import {Media} from "@/components/layouts/product/media.tsx";
+import {Media} from "@/layouts/product/media.tsx";
 import TabbedContent, {Tab} from "@/components/tabbedContent";
 import {useRouter} from "@tanstack/react-router";
 import {StrapiImage} from "@/components/image";

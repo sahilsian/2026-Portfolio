@@ -1,7 +1,7 @@
 import Screen from "@/components/screen";
-import {Content} from "@/components/layouts/feature/content.tsx";
-import {Background} from "@/components/layouts/feature/background.tsx";
-import { Media } from "./media";
+import {Content} from "@/layouts/feature/content.tsx";
+import {Background} from "@/layouts/feature/background.tsx";
+import { Media } from "./media.tsx";
 import {StrapiImage} from "@/components/image";
 import {ButtonData} from "@/components/routerButton";
 

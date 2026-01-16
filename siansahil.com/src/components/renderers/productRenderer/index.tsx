@@ -1,4 +1,4 @@
-import ProductLayout from "@/components/layouts/product";
+import ProductLayout from "@/layouts/product";
 import BlockRenderer from "@/components/renderers/blockRenderer";
 import {Product} from "@/lib/data/interfaces.ts";
 

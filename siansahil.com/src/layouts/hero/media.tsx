@@ -1,4 +1,4 @@
-import Image, {StrapiImage} from "../../image"
+import Image, {StrapiImage} from "../../components/image"
 interface BackgroundProps {
     image: StrapiImage;
     mobile?: boolean

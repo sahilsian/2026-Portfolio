@@ -1,7 +1,7 @@
 import Screen from "@/components/screen";
-import {Content} from "@/components/layouts/hero/content.tsx"
+import {Content} from "@/layouts/hero/content.tsx"
 import {StrapiImage} from "@/components/image";
-import {Media} from "@/components/layouts/hero/media.tsx";
+import {Media} from "@/layouts/hero/media.tsx";
 import {ButtonData} from "@/components/routerButton";
 
 type Variations = 'flex-row' | 'flex-row-reverse'

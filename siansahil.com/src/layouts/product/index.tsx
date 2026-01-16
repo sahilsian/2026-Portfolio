@@ -1,7 +1,7 @@
 import {StrapiImage} from "@/components/image";
 import {Tab} from "@/components/tabbedContent";
-import Background from "@/components/layouts/product/background.tsx";
-import {Content} from "@/components/layouts/product/content.tsx";
+import Background from "@/layouts/product/background.tsx";
+import {Content} from "@/layouts/product/content.tsx";
 
 interface ProductLayoutProps {
     type?: string;

@@ -3,7 +3,7 @@ import * as TanstackQuery from './integrations/tanstack-query/root-provider'
 // Import the generated route tree
 import { routeTree } from './routeTree.gen'
 import React from "react";
-import FourOFour from "@/components/layouts/404";
+import FourOFour from "@/layouts/404";
 
 // Create a new router instance
 export const getRouter = () => {

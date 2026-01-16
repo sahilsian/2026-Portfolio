@@ -1,4 +1,4 @@
-import FormLayout from "@/components/layouts/form";
+import FormLayout from "@/layouts/form";
 import {FormProps} from "@/hooks/useFormControl.ts";
 
 interface FormRendererProps {

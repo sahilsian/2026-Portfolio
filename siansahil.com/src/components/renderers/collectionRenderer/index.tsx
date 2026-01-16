@@ -1,4 +1,4 @@
-import CollectionLayout from "@/components/layouts/collection";
+import CollectionLayout from "@/layouts/collection";
 import {PageInfoProps} from "@/components/pagination";
 
 interface CollectionRendererProps {

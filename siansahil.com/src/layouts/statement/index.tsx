@@ -1,4 +1,4 @@
-import {Content} from "@/components/layouts/statement/content.tsx";
+import {Content} from "@/layouts/statement/content.tsx";
 import {ButtonData} from "@/components/routerButton";
 import Screen from "@/components/screen";
 interface FeatureLayoutProps {

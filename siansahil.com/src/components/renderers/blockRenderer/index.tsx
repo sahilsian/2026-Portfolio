@@ -1,6 +1,6 @@
-import HeroLayout from "@/components/layouts/hero";
-import FeatureLayout from "@/components/layouts/feature";
-import StatementLayout from "@/components/layouts/statement";
+import HeroLayout from "@/layouts/hero";
+import FeatureLayout from "@/layouts/feature";
+import StatementLayout from "@/layouts/statement";
 interface BlockRendererProps {
     blocks?: any[]
 }
