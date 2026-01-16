@@ -14,7 +14,7 @@ import Footer from "@/components/footer"
 import type { StylesContextProps } from "@/contexts/styles/stylesProvider.tsx"
 import type { rootSEO } from "@/components/seo/interfaces.ts"
 import { getStrapiRoot } from "@/lib/data/gqlServerClient.ts"
-import Providers from "@/components/providers"
+import Providers from "@/decorators/providers"
 import RouterSync from "@/components/routerSync"
 import Typography from "@/components/typography";
 
@@ -91,7 +91,6 @@ export const Route = createRootRouteWithContext<MyRouterContext>()({
             ],
         }
     },
-
     shellComponent: RootDocument,
 })
 

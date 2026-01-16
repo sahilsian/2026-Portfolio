@@ -2,7 +2,6 @@ import MenuItem, {MenuItemProps} from "@/components/menuItem/index.tsx";
 import Typography from "@/components/typography";
 import {Link} from "@tanstack/react-router";
 import {lazy} from "react";
-import RouterButton from "@/components/routerButton";
 interface MenuProps {
     title: string;
     menuItems?: MenuItemProps[]

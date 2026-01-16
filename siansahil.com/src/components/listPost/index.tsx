@@ -1,6 +1,6 @@
 import Image, { StrapiImage } from "@/components/image";
 import Typography from "@/components/typography";
-import {RouterInjectedProps} from "@/components/hoc/withRouter";
+import {RouterInjectedProps} from "@/decorators/withRouter";
 
 interface PostProps {
     title: string;
