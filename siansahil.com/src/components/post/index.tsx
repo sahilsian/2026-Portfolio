@@ -13,10 +13,11 @@ interface PostProps {
     disabled?: boolean
     category: string;
     dateCreated?: string
+    material?: string;
 }
 
 const Post =
-    ({ disabled, clickable, slug, documentId, title, description, image, goToPost, category, dateCreated}: PostProps & RouterInjectedProps
+    ({ disabled, clickable, slug, documentId, title, description, image, goToPost, category, material, dateCreated}: PostProps & RouterInjectedProps
     ) => {
     const handleClick = () => {
         if (clickable) {
@@ -49,6 +50,10 @@ const Post =
                     {dateCreated &&<>
                         <Typography secondary level={"6"} value={"|"} />
                         <Typography secondary level={"6"} value={dateCreated} />
+                    </>}
+                    {material &&<>
+                        <Typography secondary level={"6"} value={"|"} />
+                        <Typography secondary level={"6"} value={material} />
                     </>}
                 </div>
             </div>

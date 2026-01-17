@@ -15,9 +15,10 @@ interface ContentProps {
     description: string;
     tabs?: Tab[];
     dateCreated?: string;
+    material?: string;
 }
 
-export const Content = ({title, description, image, tabs, dateCreated}:ContentProps) => {
+export const Content = ({title, description, image, tabs, material, dateCreated}:ContentProps) => {
     const router = useRouter()
     const ctx = useAppState()
     return (
@@ -34,6 +35,10 @@ export const Content = ({title, description, image, tabs, dateCreated}:ContentPr
                     {dateCreated && <>
                     <Spacer height={"10px"}></Spacer>
                     <Typography level={'6'} value={"Created on: " + dateCreated}></Typography>
+                    </>}
+                    {dateCreated && <>
+                        <Spacer height={"10px"}></Spacer>
+                        <Typography level={'6'} value={"Material Used:" + material}></Typography>
                     </>}
                 </div>
 

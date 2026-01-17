@@ -174,6 +174,7 @@ export const PRODUCT_COLLECTION = gql`
           ...ImageFields
           }
           dateCreated
+          material
         }
         pageInfo {
           page
@@ -203,7 +204,7 @@ export const PRODUCT_ITEM = gql`
                   richDescription
                 }
                 dateCreated
-             
+                material
               }
     }
 `

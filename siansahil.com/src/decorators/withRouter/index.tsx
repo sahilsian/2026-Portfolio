@@ -12,12 +12,12 @@ export const withRouter = <P extends object>(
     Component: ComponentType<P & RouterInjectedProps>
 ) => {
     return function WithRouterComponent(props: P) {
-        const navigate = useNavigate();
-        const location = useLocation();
+        const navigate = useNavigate()
+        const location = useLocation()
 
         const goToPost = (documentId:string, slug: string) => {
-            const currentPath = location.pathname.replace(/\/$/, "");
-            navigate({ to: `${currentPath}/${documentId}/${slug}` });
+            const currentPath = location.pathname.replace(/\/$/, "")
+            navigate({ to: `${currentPath}/${documentId}/${slug}` })
         };
 
         return (
@@ -27,6 +27,6 @@ export const withRouter = <P extends object>(
                 location={location}
                 goToPost={goToPost}
             />
-        );
-    };
-};
+        )
+    }
+}

@@ -33,6 +33,7 @@ export const List = ({controlMachine, collection, pageInfo, categories}: ListPro
                         image={item.image}
                         category={item.category.name}
                         dateCreated={item.dateCreated}
+                        material={item.material}
                     />
                 ))}
         </div>;
