@@ -18,6 +18,11 @@
       "type": "component",
       "component": "control.menu-item",
       "repeatable": true
+    },
+    "socialIcons": {
+      "type": "component",
+      "component": "control.social-item",
+      "repeatable": true
     }
   }
 }

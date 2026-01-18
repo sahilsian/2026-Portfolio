@@ -636,6 +636,7 @@ export interface ApiMenuMenu extends Struct.SingleTypeSchema {
       Schema.Attribute.Private;
     mainMenuItems: Schema.Attribute.Component<'control.menu-item', true>;
     publishedAt: Schema.Attribute.DateTime;
+    socialIcons: Schema.Attribute.Component<'control.social-item', true>;
     title: Schema.Attribute.String;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
@@ -668,6 +669,7 @@ export interface ApiProductProduct extends Struct.CollectionTypeSchema {
       'api::product.product'
     > &
       Schema.Attribute.Private;
+    material: Schema.Attribute.String;
     order: Schema.Attribute.Integer &
       Schema.Attribute.Required &
       Schema.Attribute.Unique;
