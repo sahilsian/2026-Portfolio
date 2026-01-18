@@ -159,7 +159,6 @@ export const FOOTER = gql`
 
 export const PRODUCT_COLLECTION = gql`
     ${IMAGE_FIELDS}
-    
     query Products_connection($pagination: PaginationArg, $filters: ProductFiltersInput) {
         products_connection(pagination: $pagination, filters: $filters) {
         nodes {
@@ -186,6 +185,7 @@ export const PRODUCT_COLLECTION = gql`
     }
 `;
 
+// Depreciated: Querying by slug instead of ID.
 export const PRODUCT_ITEM = gql`
     ${IMAGE_FIELDS}
     query Product($documentId: ID!) {
@@ -208,6 +208,29 @@ export const PRODUCT_ITEM = gql`
               }
     }
 `
+
+export const PRODUCT_ITEM_SLUG = gql`
+    ${IMAGE_FIELDS}
+    query Product($filters: ProductFiltersInput) {
+      products(filters: $filters) {
+        title
+        slug
+        category {
+            name
+        }
+        image {
+          ...ImageFields
+        }
+        description
+        tabs {
+          title
+          richDescription
+        }
+        dateCreated
+        material
+      } 
+    }
+`;
 
 export const ROOT_SEO = gql`
     ${IMAGE_FIELDS}

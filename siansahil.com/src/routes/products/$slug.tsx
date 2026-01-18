@@ -2,19 +2,26 @@ import {createFileRoute} from '@tanstack/react-router'
 import {queryProduct} from "@/lib/data/queries/queries.ts";
 import ProductRenderer from "@/components/renderers/productRenderer";
 
-export const Route = createFileRoute('/products/$id/$slug')({
+export const Route = createFileRoute('/products/$slug')({
   component: RouteComponent,
     loader: async ({context, params}) => {
-        const { id, slug } = params;
+        const { slug } = params;
+
+        const filters: any = {
+            slug: {
+                eq: slug
+            }
+        };
+
         const product = await context.queryClient.ensureQueryData({
             queryFn: async () => {
-                return await queryProduct({ data: { documentId: id } })
+                return await queryProduct({ data: {filters} })
             },
-            queryKey: ["product", id, slug]
+            queryKey: ["product", slug, filters]
         })
 
         return {
-            product: product.product
+            product: product.products[0]
         }
     },
     head: ({loaderData}) => {

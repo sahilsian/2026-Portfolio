@@ -8,7 +8,10 @@ import {
     NO_LIMIT,
     PRODUCT_COLLECTION,
     CATEGORIES,
-    PRODUCT_ITEM, STYLES, ROOT_SEO, FORM_ITEM,
+    STYLES,
+    ROOT_SEO,
+    FORM_ITEM,
+    PRODUCT_ITEM_SLUG
 } from "@/lib/data/queries/gql.ts";
 import {getGqlClient} from "@/lib/data/gqlServerClient.ts";
 
@@ -47,8 +50,7 @@ export const queryProductCollection =
     createServerFn({ method: "GET" })
         .inputValidator(
             z.object({
-                filters: z
-                    .object({
+                filters: z.object({
                         title: z.object({
                             contains: z.string(),
                         }).optional(),
@@ -57,21 +59,18 @@ export const queryProductCollection =
                                 eqi: z.string()
                             }),
                         }).optional(),
-                    })
-                    .optional(),
+                    }).optional(),
 
-                pagination: z
-                    .object({
+                pagination: z.object({
                         page: z.number(),
                         pageSize: z.number(),
-                    })
-                    .optional(),
+                    }).optional(),
             })
         )
         .handler(({data}) => {
             const client = getGqlClient();
             return client.request(PRODUCT_COLLECTION, data);
-        });
+        })
 
 export const queryCategories = createServerFn({ method: "GET" }).handler(() => {
     const client = getGqlClient();
@@ -80,11 +79,20 @@ export const queryCategories = createServerFn({ method: "GET" }).handler(() => {
 
 // Products - accepting a string parameter
 export const queryProduct = createServerFn()
-    .inputValidator(z.object({documentId: z.string()}))
+    .inputValidator(
+        z.object({
+            filters: z.object({
+                    slug: z.object({
+                        eq: z.string(),
+                    })
+                }).required(),
+        })
+    )
     .handler(async ({data}) => {
         const client = getGqlClient();
-        return client.request(PRODUCT_ITEM, {documentId: data.documentId})
+        return client.request(PRODUCT_ITEM_SLUG, data)
     })
+
 
 export const queryForm = createServerFn()
     .inputValidator(z.object({documentId: z.string()}))

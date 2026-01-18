@@ -37,7 +37,7 @@ const Pagination = ({ page, pageCount, pageSize, total}:PaginationProps):React.J
         var elements = []
 
         for(let i:number = 0; i < pageCount; i++) {
-            elements.push(<PaginationButton pageSize={pageSize} selectedPage={page} idx={i+1}></PaginationButton>)
+            elements.push(<PaginationButton key={i+1} pageSize={pageSize} selectedPage={page} idx={i+1}></PaginationButton>)
         }
 
         return elements

@@ -17,7 +17,7 @@ export const withRouter = <P extends object>(
 
         const goToPost = (documentId:string, slug: string) => {
             const currentPath = location.pathname.replace(/\/$/, "")
-            navigate({ to: `${currentPath}/${documentId}/${slug}` })
+            navigate({ to: `${currentPath}/${slug}` })
         };
 
         return (

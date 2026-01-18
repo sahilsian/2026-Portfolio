@@ -13,7 +13,7 @@ const DropdownInput = ({value, handleChange, disabled, options}:DropdownInputPro
             <div >
                 <select value={value} onChange={handleChange} disabled={disabled}>
                     {options && options.map((option) => {
-                        return <DropdownOption name={option.name}></DropdownOption>
+                        return <DropdownOption key={option.name} name={option.name}></DropdownOption>
                     })}
                 </select>
             </div>

@@ -11,8 +11,8 @@
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as ProductsIndexRouteImport } from './routes/products/index'
+import { Route as ProductsSlugRouteImport } from './routes/products/$slug'
 import { Route as FormsIdRouteImport } from './routes/forms/$id'
-import { Route as ProductsIdSlugRouteImport } from './routes/products/$id.$slug'
 import { Route as ApiTrpcSplatRouteImport } from './routes/api.trpc.$'
 
 const IndexRoute = IndexRouteImport.update({
@@ -25,14 +25,14 @@ const ProductsIndexRoute = ProductsIndexRouteImport.update({
   path: '/products/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ProductsSlugRoute = ProductsSlugRouteImport.update({
+  id: '/products/$slug',
+  path: '/products/$slug',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const FormsIdRoute = FormsIdRouteImport.update({
   id: '/forms/$id',
   path: '/forms/$id',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const ProductsIdSlugRoute = ProductsIdSlugRouteImport.update({
-  id: '/products/$id/$slug',
-  path: '/products/$id/$slug',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ApiTrpcSplatRoute = ApiTrpcSplatRouteImport.update({
@@ -44,50 +44,50 @@ const ApiTrpcSplatRoute = ApiTrpcSplatRouteImport.update({
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/forms/$id': typeof FormsIdRoute
+  '/products/$slug': typeof ProductsSlugRoute
   '/products': typeof ProductsIndexRoute
   '/api/trpc/$': typeof ApiTrpcSplatRoute
-  '/products/$id/$slug': typeof ProductsIdSlugRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/forms/$id': typeof FormsIdRoute
+  '/products/$slug': typeof ProductsSlugRoute
   '/products': typeof ProductsIndexRoute
   '/api/trpc/$': typeof ApiTrpcSplatRoute
-  '/products/$id/$slug': typeof ProductsIdSlugRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/forms/$id': typeof FormsIdRoute
+  '/products/$slug': typeof ProductsSlugRoute
   '/products/': typeof ProductsIndexRoute
   '/api/trpc/$': typeof ApiTrpcSplatRoute
-  '/products/$id/$slug': typeof ProductsIdSlugRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
     | '/'
     | '/forms/$id'
+    | '/products/$slug'
     | '/products'
     | '/api/trpc/$'
-    | '/products/$id/$slug'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/forms/$id' | '/products' | '/api/trpc/$' | '/products/$id/$slug'
+  to: '/' | '/forms/$id' | '/products/$slug' | '/products' | '/api/trpc/$'
   id:
     | '__root__'
     | '/'
     | '/forms/$id'
+    | '/products/$slug'
     | '/products/'
     | '/api/trpc/$'
-    | '/products/$id/$slug'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   FormsIdRoute: typeof FormsIdRoute
+  ProductsSlugRoute: typeof ProductsSlugRoute
   ProductsIndexRoute: typeof ProductsIndexRoute
   ApiTrpcSplatRoute: typeof ApiTrpcSplatRoute
-  ProductsIdSlugRoute: typeof ProductsIdSlugRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -106,18 +106,18 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ProductsIndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/products/$slug': {
+      id: '/products/$slug'
+      path: '/products/$slug'
+      fullPath: '/products/$slug'
+      preLoaderRoute: typeof ProductsSlugRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/forms/$id': {
       id: '/forms/$id'
       path: '/forms/$id'
       fullPath: '/forms/$id'
       preLoaderRoute: typeof FormsIdRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/products/$id/$slug': {
-      id: '/products/$id/$slug'
-      path: '/products/$id/$slug'
-      fullPath: '/products/$id/$slug'
-      preLoaderRoute: typeof ProductsIdSlugRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/api/trpc/$': {
@@ -133,9 +133,9 @@ declare module '@tanstack/react-router' {
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   FormsIdRoute: FormsIdRoute,
+  ProductsSlugRoute: ProductsSlugRoute,
   ProductsIndexRoute: ProductsIndexRoute,
   ApiTrpcSplatRoute: ApiTrpcSplatRoute,
-  ProductsIdSlugRoute: ProductsIdSlugRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

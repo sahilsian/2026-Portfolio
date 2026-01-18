@@ -32,14 +32,16 @@ export const Content = ({title, description, image, tabs, material, dateCreated}
             <div className={"flex gap-10 flex-wrap"}>
                 <div className={'flex-1'}>
                     <Media image={image}></Media>
-                    {dateCreated && <>
                     <Spacer height={"10px"}></Spacer>
-                    <Typography level={'6'} value={"Created on: " + dateCreated}></Typography>
-                    </>}
-                    {dateCreated && <>
-                        <Spacer height={"10px"}></Spacer>
-                        <Typography level={'6'} value={"Material Used:" + material}></Typography>
-                    </>}
+                    <div className={'flex gap-3 items-center'}>
+                        {dateCreated && <>
+                        <Typography level={'6'} value={"Created on: " + dateCreated}></Typography>
+                        </>}
+                        {material && <>
+                        {(material && dateCreated) && <Typography  level={'6'} value={"|"}></Typography> }
+                            <Typography level={'6'} value={material}></Typography>
+                        </>}
+                    </div>
                 </div>
 
                 <div className={"flex-2"}>
