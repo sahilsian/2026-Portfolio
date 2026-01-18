@@ -8,17 +8,16 @@ interface PostProps {
     image: StrapiImage;
     slug: string;
     clickable: boolean;
-    documentId: string;
     disabled?: boolean
     category?: string
 }
 
 const ListPost =
-    ({ disabled, clickable, slug, documentId, title, description, image, goToPost}: PostProps & RouterInjectedProps
+    ({ disabled, clickable, slug, title, description, image, goToPost}: PostProps & RouterInjectedProps
     ) => {
         const handleClick = () => {
             if (clickable) {
-                goToPost(documentId, slug);
+                goToPost(slug);
             }
         };
 

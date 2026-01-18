@@ -3,7 +3,7 @@ import { useLocation, useNavigate } from "@tanstack/react-router";
 import { ComponentType } from "react";
 
 export interface RouterInjectedProps {
-    goToPost: (documentId:string, slug: string) => void;
+    goToPost: (slug: string) => void;
     navigate: ReturnType<typeof useNavigate>;
     location: ReturnType<typeof useLocation>;
 }
@@ -15,7 +15,7 @@ export const withRouter = <P extends object>(
         const navigate = useNavigate()
         const location = useLocation()
 
-        const goToPost = (documentId:string, slug: string) => {
+        const goToPost = (slug: string) => {
             const currentPath = location.pathname.replace(/\/$/, "")
             navigate({ to: `${currentPath}/${slug}` })
         };
